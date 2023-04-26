@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend application using Electron with Integration of OpenAI API and Supabase",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simplecoderx/frontend.git"
+  },
+  "author": "Lynn Villacorta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simplecoderx/frontend/issues"
+  },
+  "homepage": "https://github.com/simplecoderx/frontend#readme",
+  "devDependencies": {
+    "electron": "^24.1.2"
+  }
+}
