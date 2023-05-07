@@ -55,7 +55,7 @@ if (form_openai) {
         tools_type: tools_type
       });
     console.log(db_response);
-    
+
     btn_submit.innerHTML = 'Process Text';
     btn_submit.disabled = false;
   };
