@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 
 // Global Variables
-const isDev = false;
+const isDev = true;
 const isMac = process.platform === 'darwin';
 const template = [
   // { role: 'appMenu' }
@@ -148,7 +148,8 @@ app.whenReady().then(() => {
   // Initialize Functions
   ipcMain.handle('axios.openAI', openAI);
   ipcMain.handle('axios.tesseract', tesseract);
-  ipcMain.handle('axios.supaBase', supaBase);
+  // ipcMain.handle('axios.supaBase', supaBase);
+  ipcMain.handle('axios.backendLaravelPost', backendLaravelPost);
   ipcMain.handle('axios.backendLaravel', backendLaravel);
 
   // Create Main Window
@@ -222,23 +223,48 @@ async function tesseract(event, filepath){
   return result;
 }
 
-// Axios Supabase API
-async function supaBase(event, method, id = '', data = null){
+// // Axios Supabase API
+// async function supaBase(event, method, id = '', data = null){
+//   let result = null;
+//   const env = dotenv.parsed;
+
+//   let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
+//   await axios({
+//       method: method,
+//       url: 'https://cllqtlqbalakicuzedln.supabase.co/rest/v1/prompts' + query,
+//       headers: ( method == 'post' ? {
+//           'apikey': env.APIKEY_SUPABASE,
+//           'Authorization': 'Bearer ' + env.APIKEY_SUPABASE,
+//           'Content-Type': 'application/json',
+//           'Prefer': 'return=minimal'
+//         } : {
+//           'apikey': env.APIKEY_SUPABASE,
+//           'Authorization': 'Bearer ' + env.APIKEY_SUPABASE 
+//         } ),
+//       data: ( method == 'post' ? data : null )
+//     }).then(function (response) {
+//       result = response.data;
+//     })
+//     .catch(function (error) {
+//       result = error.response.data;
+//     });
+
+//   return result;
+// }
+
+
+async function backendLaravelPost(event, method, id = '', data = null){
   let result = null;
   const env = dotenv.parsed;
 
   let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
   await axios({
       method: method,
-      url: 'https://cllqtlqbalakicuzedln.supabase.co/rest/v1/prompts' + query,
-      headers: ( method == 'post' ? {
-          'apikey': env.APIKEY_SUPABASE,
-          'Authorization': 'Bearer ' + env.APIKEY_SUPABASE,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
+      url: 'http://backend.test/api/prompt' + query,
+      headers:( method == 'post' ? {
+          'Accept': 'application/json',
         } : {
-          'apikey': env.APIKEY_SUPABASE,
-          'Authorization': 'Bearer ' + env.APIKEY_SUPABASE 
+          'Accept': 'application/json',
         } ),
       data: ( method == 'post' ? data : null )
     }).then(function (response) {
@@ -250,6 +276,35 @@ async function supaBase(event, method, id = '', data = null){
 
   return result;
 }
+
+
+// Axios Laravel API
+// async function backendLaravelPost(event, method='post', path='prompt', data = null, token = ''){
+//   let result = null;
+
+//   await axios({
+//       method: method,
+//       url: 'http://backend.test/api/' + path,
+//       headers: ( token == '' ? { 
+//             'Accept': 'application/json',
+//         } : {
+//             'Accept': 'application/json',
+//             'Authorization': 'Bearer ' + token
+//         } ),
+//       data: {
+//         text: "she went no to the market",
+//         result: "She went to the market.",
+//         tools_type: "Grammar Correction"
+// }
+//     }).then(function (response) {
+//       result = response.data;
+//     })
+//     .catch(function (error) {
+//       result = error.response.data;
+//     });
+
+//   return result;
+// }
 
 // Axios Laravel API
 async function backendLaravel(event, method, path, data = null, token = ''){

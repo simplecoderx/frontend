@@ -104,7 +104,7 @@ if (btn_logout) {
 // Read Prompts from SupaBase
 async function getPrompts () {
     // Fetch API Response
-    const response = await window.axios.supaBase('get');
+    const response = await window.axios.backendLaravelPost('get');
 
     // Load table from API Response
     let htmlResult = '';
