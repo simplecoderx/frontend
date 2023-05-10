@@ -110,10 +110,13 @@ async function getPrompts () {
     let htmlResult = '';
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
+        //let date = new Date((response[key].created_at || '').replace(' ', 'T'));
+
 
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
-            '<td>' + response[key].tools_type + '</td>' +
+        '<th scope="row">' +  response[key].transprompt_id + '</th>' +
+            // '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            //'<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
             '<td>' + date.toLocaleString('en-US', { timeZone: 'UTC' }) + '</td>' +
@@ -123,7 +126,8 @@ async function getPrompts () {
                         'Action' +
                     '</button>' +
                     '<ul class="dropdown-menu">' +
-                        '<li><a id="btn_prompts_del" class="dropdown-item" href="#" name="' + response[key].prompt_id + '">Remove</a></li>' +
+                        //'<li><a id="btn_prompts_del" class="dropdown-item" href="#" name="' + response[key].prompt_id + '">Remove</a></li>' +
+                        '<li><a id="btn_prompts_del" class="dropdown-item" href="#" name="' + response[key].transprompt_id + '">Remove</a></li>' +
                     '</ul>' +
                 '</div>' +
         '</tr>';
@@ -139,7 +143,7 @@ if (tbl_prompts) {
     tbl_prompts.onclick = async function (e) {
         if(e.target && e.target.id == "btn_prompts_del") {
             const id = e.target.name;
-            const response = await window.axios.supaBase('delete', id);
+            const response = await window.axios.backendLaravelPost('delete', id);
             console.log(response);
             
             alertMessage("success", "Successfully deleted id " + id + '!');

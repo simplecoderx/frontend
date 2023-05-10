@@ -172,7 +172,7 @@ app.on("window-all-closed", () => {
 
 // Main Functions
 // Axios OpenAI API
-async function openAI(event, sentence, tools_type){
+async function openAI(event, sentence){
   let result = null;
 
   const env = dotenv.parsed;
@@ -181,12 +181,13 @@ async function openAI(event, sentence, tools_type){
       url: 'https://api.openai.com/v1/completions',
       data: {
         model: "text-davinci-003",
-        prompt: ( tools_type == 'Grammar Correction' ? "Correct this to standard English:\n\n" : "Summarize this for a second-grade student:\n\n" ) +  sentence,
-        temperature: ( tools_type == 'Grammar Correction' ? 0 : 0.7 ),
-        max_tokens: ( tools_type == 'Grammar Correction' ? 60 : 64 ),
+        // prompt: ( tools_type == 'Grammar Correction') +  sentence,
+        prompt: sentence,
+        temperature: 0.3,
+        max_tokens: 100,
         top_p: 1.0,
         frequency_penalty: 0.0,
-        presence_penalty: 0.0
+        presence_penalty: 0.0,
       },
       headers: {
         'Content-Type': 'application/json',
@@ -257,10 +258,11 @@ async function backendLaravelPost(event, method, id = '', data = null){
   let result = null;
   const env = dotenv.parsed;
 
-  let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
+  let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?transprompt_id=eq.' + id : '') );
   await axios({
       method: method,
-      url: 'http://backend.test/api/prompt' + query,
+      // url: 'http://backend.test/api/prompt' + query,
+      url: 'http://backend.test/api/transprompt' + query,
       headers:( method == 'post' ? {
           'Accept': 'application/json',
         } : {

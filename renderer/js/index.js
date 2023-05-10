@@ -29,14 +29,14 @@ if (form_openai) {
 
     const btn_submit = document.querySelector("#form_openai button[type='submit']");
     const formData = new FormData(form_openai);
-    let tools_type = formData.get("tools-type");
+    // let tools_type = formData.get("tools-type");
     let extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
     let sentence = extraction_type ? formData.get("sentence-text") : formData.get("sentence-img");
 
-    if (tools_type == null) {
-      alertMessage("error", "Please choose OpenAI Tools!");
-      return;
-    }
+    // if (tools_type == null) {
+    //   alertMessage("error", "Please choose OpenAI Tools!");
+    //   return;
+    // }
 
     if (sentence.length <= 8) {
       alertMessage("error", "Please input text at least 8 characters or upload image to extract text!");
@@ -46,13 +46,14 @@ if (form_openai) {
     btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
     btn_submit.disabled = true;
 
-    const response = await window.axios.openAI(sentence, tools_type);
+    //const response = await window.axios.openAI(sentence, tools_type);
+    const response = await window.axios.openAI(sentence);
     let result = response.choices[0].text;
     document.querySelector("#div-result textarea").innerHTML = result.replace(/\n/g, "");
     const db_response = await window.axios.backendLaravelPost('post', '', {
         text: sentence,
         result: result,
-        tools_type: tools_type
+        //tools_type: tools_type
       });
     console.log(db_response);
     
