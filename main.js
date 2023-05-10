@@ -149,6 +149,7 @@ app.whenReady().then(() => {
   ipcMain.handle('axios.openAI', openAI);
   ipcMain.handle('axios.tesseract', tesseract);
   ipcMain.handle('axios.backendLaravelPost', backendLaravelPost);
+  ipcMain.handle('axios.backendLaravelDelete', backendLaravelDelete);
   ipcMain.handle('axios.backendLaravel', backendLaravel);
 
   // Create Main Window
@@ -244,6 +245,29 @@ async function backendLaravelPost(event, method, id = '', data = null){
     });
   return result;
 }
+
+// Axios LaravelDelete API
+async function backendLaravelDelete(event, method='delete', id = '', data = null){
+  let result = null;
+  const env = dotenv.parsed;
+  await axios({
+      method: method,
+      url: 'http://backend.test/api/prompts/' + id,
+      headers:( method == 'post' ? {
+          'Accept': 'application/json',
+        } : {
+          'Accept': 'application/json',
+        } ),
+      data: data
+    }).then(function (response) {
+      result = response.data;
+    })
+    .catch(function (error) {
+      result = error.response.data;
+    });
+  return result;
+}
+
 
 // Axios Laravel API
 async function backendLaravel(event, method, path, data = null, token = ''){
