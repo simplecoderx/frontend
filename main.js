@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 
 // Global Variables
-const isDev = false;
+const isDev = true;
 const isMac = process.platform === 'darwin';
 const template = [
   // { role: 'appMenu' }
@@ -180,9 +180,9 @@ async function openAI(event, sentence, tools_type){
       url: 'https://api.openai.com/v1/completions',
       data: {
         model: "text-davinci-003",
-        prompt: ( tools_type == 'Grammar Correction' ? "Correct this to standard English:\n\n" : "Summarize this for a second-grade student:\n\n" ) +  sentence,
-        temperature: ( tools_type == 'Grammar Correction' ? 0 : 0.7 ),
-        max_tokens: ( tools_type == 'Grammar Correction' ? 60 : 64 ),
+        prompt: ( tools_type == 'English to Another Language' ? "Translate this into" : "Q: Who is Batman?\n" ) +  sentence,
+        temperature: ( tools_type == 'English to Another Language' ? 0.3 : 0 ),
+        max_tokens: ( tools_type == 'English to Another Language' ? 100 : 60 ),
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0
@@ -222,19 +222,18 @@ async function tesseract(event, filepath){
   return result;
 }
 
-// Axios Supabase API
+// Axios LaravelPost API
 async function backendLaravelPost(event, method, id = '', data = null){
   let result = null;
   const env = dotenv.parsed;
-
   let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
   await axios({
       method: method,
       url: 'http://backend.test/api/prompt' + query,
-      headers: ( method == 'post' ? {
+      headers:( method == 'post' ? {
           'Accept': 'application/json',
         } : {
-          'Authorization': 'Bearer ' + env.APIKEY_SUPABASE 
+          'Accept': 'application/json',
         } ),
       data: ( method == 'post' ? data : null )
     }).then(function (response) {
@@ -243,7 +242,6 @@ async function backendLaravelPost(event, method, id = '', data = null){
     .catch(function (error) {
       result = error.response.data;
     });
-
   return result;
 }
 

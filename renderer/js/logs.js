@@ -104,7 +104,7 @@ if (btn_logout) {
 // Read Prompts from SupaBase
 async function getPrompts () {
     // Fetch API Response
-    const response = await window.axios.supaBase('get');
+    const response = await window.axios.backednLaravel('get');
 
     // Load table from API Response
     let htmlResult = '';
@@ -139,7 +139,7 @@ if (tbl_prompts) {
     tbl_prompts.onclick = async function (e) {
         if(e.target && e.target.id == "btn_prompts_del") {
             const id = e.target.name;
-            const response = await window.axios.supaBase('delete', id);
+            const response = await window.axios.backendLaravelPost('delete', id);
             console.log(response);
             
             alertMessage("success", "Successfully deleted id " + id + '!');
