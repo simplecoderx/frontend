@@ -148,7 +148,7 @@ app.whenReady().then(() => {
   // Initialize Functions
   ipcMain.handle('axios.openAI', openAI);
   ipcMain.handle('axios.tesseract', tesseract);
-  ipcMain.handle('axios.supaBase', supaBase);
+  ipcMain.handle('axios.backendLaravelPost', backendLaravelPost);
   ipcMain.handle('axios.backendLaravel', backendLaravel);
 
   // Create Main Window
@@ -223,21 +223,17 @@ async function tesseract(event, filepath){
 }
 
 // Axios Supabase API
-async function supaBase(event, method, id = '', data = null){
+async function backendLaravelPost(event, method, id = '', data = null){
   let result = null;
   const env = dotenv.parsed;
 
   let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
   await axios({
       method: method,
-      url: 'https://lsuibxpvxqrxhkmxcmwy.supabase.co/rest/v1/prompts' + query,
+      url: 'http://backend.test/api/prompt' + query,
       headers: ( method == 'post' ? {
-          'apikey': env.APIKEY_SUPABASE,
-          'Authorization': 'Bearer ' + env.APIKEY_SUPABASE,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
+          'Accept': 'application/json',
         } : {
-          'apikey': env.APIKEY_SUPABASE,
           'Authorization': 'Bearer ' + env.APIKEY_SUPABASE 
         } ),
       data: ( method == 'post' ? data : null )
