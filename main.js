@@ -106,7 +106,7 @@ const createWindow = () => {
     main.webContents.openDevTools();
   }
 
-  main.loadFile(path.join(__dirname, "./renderer/index.html"));
+  main.loadFile(path.join(__dirname, "./renderer/login.html"));
 };
 
 // Application Logs Window

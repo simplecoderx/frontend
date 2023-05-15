@@ -129,8 +129,8 @@ async function getPrompts () {
         '</tr>';
     });
 
-    const tbody = document.getElementById('tbl_prompts');
-    tbody.innerHTML = htmlResult;
+    // const tbody = document.getElementById('tbl_prompts');
+    // tbody.innerHTML = htmlResult;
 }
 
 // Set Btn Delete Prompt Click functionality from Table Prompts
