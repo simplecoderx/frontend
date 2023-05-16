@@ -22,3 +22,34 @@
 .form-textarea{
     height: 125px !important;
 }
+.sample{
+    background-color: gray;
+}
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .pagination .page-item {
+    margin-right: 0.5rem;
+  }
+
+  .pagination .page-item.disabled .page-link {
+    display: none;
+  }
+
+  .pagination .page-item.disabled + li.page-item:not(.active) {
+    margin-left: -0.5rem;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+  }

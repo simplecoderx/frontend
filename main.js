@@ -29,10 +29,10 @@ const template = [
   {
     label: 'File',
     submenu: [
-      {
-        label: 'App Logs',
-        click: logsWindow
-      },
+      // {
+      //   label: 'App Logs',
+      //   click: logsWindow
+      // },
       {
         label: 'About',
         click: aboutWindow
@@ -110,26 +110,26 @@ const createWindow = () => {
 };
 
 // Application Logs Window
-function logsWindow () {
-  const logs = new BrowserWindow({
-    width: 900,
-    height: 600,
-    alwaysOnTop: true,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: true,
-      preload: path.join(__dirname, "preload.js"),
-    },
-  });
+// function logsWindow () {
+//   const logs = new BrowserWindow({
+//     width: 900,
+//     height: 600,
+//     alwaysOnTop: true,
+//     webPreferences: {
+//       nodeIntegration: true,
+//       contextIsolation: true,
+//       preload: path.join(__dirname, "preload.js"),
+//     },
+//   });
 
-  logs.setMenuBarVisibility(false);
+//   logs.setMenuBarVisibility(false);
 
-  if (isDev) {
-    logs.webContents.openDevTools();
-  }
+//   if (isDev) {
+//     logs.webContents.openDevTools();
+//   }
 
-  logs.loadFile(path.join(__dirname, "./renderer/logs.html"));
-}
+//   logs.loadFile(path.join(__dirname, "./renderer/logs.html"));
+// }
 
 // About Window
 function aboutWindow () {

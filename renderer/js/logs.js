@@ -64,6 +64,37 @@ if (form_login) {
   };
 }
 
+// Btn Logs
+const btn_logs = document.getElementById('btn_logs');
+if (btn_logs) {
+    btn_logs.onclick = async function () {
+    const div_login = document.getElementById("div_login");
+    const div_prompts = document.getElementById("div_prompts");
+    const div_tbl = document.getElementById("div_tbl");
+    div_prompts.classList.add('d-none');
+    div_login.classList.add('d-none');
+    div_tbl.classList.remove('d-none');
+    div_tbl.classList.add('d-flex');
+    getPrompts();
+    }
+}
+
+// Btn Back
+const btn_back = document.getElementById('btn_back');
+if (btn_back) {
+    btn_back.onclick = async function () {
+    const div_login = document.getElementById("div_login");
+    const div_prompts = document.getElementById("div_prompts");
+    const div_tbl = document.getElementById("div_tbl");
+    div_login.classList.add('d-none');
+    div_tbl.classList.add('d-none');
+    div_prompts.classList.remove('d-none');
+    div_prompts.classList.add('d-flex');
+    getPrompts();
+    }
+}
+
+
 // Btn Logout
 const btn_logout = document.getElementById('btn_logout');
 if (btn_logout) {
@@ -101,7 +132,7 @@ if (btn_logout) {
     }
 }
 
-// Read Prompts from SupaBase
+// Read Prompts from SupaBase --ORIGINAL
 async function getPrompts () {
     // Fetch API Response
     const response = await window.axios.backendLaravel('get', 'prompts');
@@ -119,19 +150,93 @@ async function getPrompts () {
             '<td>' + date.toLocaleString('en-US', { timeZone: 'UTC' }) + '</td>' +
             '<td>' + 
                 '<div class="btn-group" role="group">' +
-                    '<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">' +
-                        'Action' +
+                    '<button id="btn_prompts_del" name="' + response[key].prompt_id + '" type="button" class="btn btn-danger btn-sm" aria-expanded="false">' +
+                        'Remove' +
                     '</button>' +
-                    '<ul class="dropdown-menu">' +
-                        '<li><a id="btn_prompts_del" class="dropdown-item" href="#" name="' + response[key].prompt_id + '">Remove</a></li>' +
-                    '</ul>' +
                 '</div>' +
         '</tr>';
     });
 
-    // const tbody = document.getElementById('tbl_prompts');
-    // tbody.innerHTML = htmlResult;
+    const tbody = document.getElementById('tbl_prompts');
+    tbody.innerHTML = htmlResult;
 }
+
+
+// async function getPrompts(page = 1, pageSize = 5) {
+//     // Calculate the start index based on the current page
+//     const startIndex = (page - 1) * pageSize;
+  
+//     // Fetch API Response
+//     const response = await window.axios.backendLaravel('get', 'prompts');
+  
+//     // Get the total number of prompts
+//     const totalPrompts = Object.keys(response).length;
+  
+//     // Calculate the total number of pages
+//     const totalPages = Math.ceil(totalPrompts / pageSize);
+  
+//     // Calculate the end index for the current page
+//     const endIndex = Math.min(startIndex + pageSize, totalPrompts);
+  
+//     // Load table rows for the current page
+//     let htmlResult = '';
+//     for (let i = startIndex; i < endIndex; i++) {
+//       const key = Object.keys(response)[i];
+//       const prompt = response[key];
+//       const date = new Date(prompt.created_at.replace(' ', 'T'));
+  
+//       htmlResult += '<tr>' +
+//         '<th scope="row">' + prompt.prompt_id + '</th>' +
+//         '<td>' + prompt.tools_type + '</td>' +
+//         '<td>' + prompt.text + '</td>' +
+//         '<td>' + prompt.result + '</td>' +
+//         '<td>' + date.toLocaleString('en-US', { timeZone: 'UTC' }) + '</td>' +
+//         '<td>' +
+//         '<div class="btn-group" role="group">' +
+//         '<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">' +
+//         'Action' +
+//         '</button>' +
+//         '<ul class="dropdown-menu">' +
+//         '<li><a id="btn_prompts_del" class="dropdown-item" href="#" name="' + prompt.prompt_id + '">Remove</a></li>' +
+//         '</ul>' +
+//         '</div>' +
+//         '</tr>';
+//     }
+  
+//     const tbody = document.getElementById('tbl_prompts');
+//     tbody.innerHTML = htmlResult;
+  
+//     // Update pagination links
+//     const pagination = document.getElementById('pagination');
+//     pagination.innerHTML = createPaginationLinks(page, totalPages);
+//   }
+  
+//   // Helper function to create pagination links
+//   function createPaginationLinks(currentPage, totalPages) {
+//     let links = '';
+    
+//     for (let i = 1; i <= totalPages; i++) {
+//       links += '<li class="page-item' + (i === currentPage ? ' active' : '') + '">';
+//       links += '<a class="page-link" href="#" data-page="' + i + '">' + i + '</a>';
+//       links += '</li>';
+//     }
+   
+//     return links;
+//   }
+  
+//   // Handle pagination link clicks
+//   const pagination = document.getElementById('pagination');
+//   if (pagination) {
+//     pagination.addEventListener('click', function (e) {
+//       e.preventDefault();
+//       if (e.target && e.target.matches('a.page-link')) {
+//         const page = parseInt(e.target.getAttribute('data-page'));
+//         getPrompts(page);
+//       }
+//     });
+//   }
+
+  
 
 // Set Btn Delete Prompt Click functionality from Table Prompts
 const tbl_prompts = document.getElementById('tbl_prompts');
