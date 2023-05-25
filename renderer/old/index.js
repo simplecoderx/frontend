@@ -33,10 +33,10 @@ if (form_openai) {
     let extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
     let sentence = extraction_type ? formData.get("sentence-text") : formData.get("sentence-img");
 
-    // if (tools_type == null) {
-    //   alertMessage("error", "Please choose OpenAI Tools!");
-    //   return;
-    // }
+    if (tools_type == null) {
+      alertMessage("error", "Please choose OpenAI Tools!");
+      return;
+    }
 
     if (sentence.length <= 8) {
       alertMessage("error", "Please input text at least 8 characters or upload image to extract text!");

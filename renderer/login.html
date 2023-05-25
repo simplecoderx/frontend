@@ -38,25 +38,57 @@
           </form>
         </div>
 
-        <!-- Logs Table -->
-        <div id="div_prompts" class="card card-body mt-3 d-none">
+        <!--Choose Tools-->
+        <div id="div_tools" class="card card-body mt-3 d-none">
           <div class="d-flex justify-content-end m">
-            <button id="btn_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
-            <button id="btn_logout" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+            <button id="btn_all_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
+            <button id="btn_logout_index" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
           </div>
-          <form id="form_openai">
+          <div class="row pt-5 pb-5">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tool #1</h5>
+                  <p class="card-text"><img class="w-100 h-75" src="./images/img_english_to_another_language.png"></p>
+                  <button id="btn_engla" class="btn btn-engla" name="tools-type" value="English to Another Language">Click Here</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tool #2</h5>
+                  <p class="card-text"><img class="w-100 h-75" src="./images/img_factual_answering.png"></p>
+                  <a href="#" id="btn_fa" name="tools-type" value="Factual Answering" class="btn fa-btn">Click Here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logs Table for English to Another Language -->
+        <div id="div_prompts" class="card card-body mt-3 d-none">
+          <div id="div_engla" class="d-flex justify-content-start align-items-center">
+            <img class="w-20 h-10" src="./images/img_english_to_another_language.png">
+            <div class="ml-3 mr-5">
+            <button id="btn_back_tools" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Back</button>
+            <button id="btn_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
+            <button id="btn_logout1" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+            </div>
+          </div>
+
             <!-- Tools Type -->
-            <div class="row mb-3 text-start">
-              <label class="fw-bold">OpenAI Tools</label>
-              <div class="col">
+          <form id="form_openai">
+            <div class="row mb-3 text-start text-center">
+              <div id="div_tool_no1" class="col">
                 <div class="form-check">
-                  <input class="form-check-input mt-3" type="radio" name="tools-type" value="English to Another Language" id="flexRadioDefault1">
+                  <input class="form-check-input mt-3" type="radio" name="tools-type" value="English to Another Language" id="flexRadioDefault1" checked>
                   <label class="form-check-label" for="flexRadioDefault1">
                     <img class="w-100 h-75" src="./images/img_english_to_another_language.png">
                   </label>
                 </div>
               </div>
-              <div class="col">
+              <div id="div_tool_no2" class="col">
                 <div class="form-check">
                   <input class="form-check-input mt-3" type="radio" name="tools-type" value="Factual Answering" id="flexRadioDefault2">
                   <label class="form-check-label" for="flexRadioDefault2">
@@ -81,7 +113,7 @@
             <div class="tab-content" id="pills-tabContent">
               <!-- Type: Text Only -->
               <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-text-tab" tabindex="0">
-                <div class="card card-body">
+                <div class="card card-body div-engla">
                   <div class="form-floating mb-3">
                     <textarea class="form-control form-textarea" name="sentence-text"></textarea>
                     <label class="fw-bold" for="floatingTextarea">Text</label>
@@ -90,7 +122,7 @@
               </div>
               <!-- Type: Image -->
               <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
-                <div class="card card-body">
+                <div class="card card-body div-engla">
                   <div class="row mb-3">
                     <div class="col">
                       <input class="form-control fw-bold" type="file" id="file_extract">
@@ -109,8 +141,8 @@
             </div>
             
             <!-- Result -->
-            <div class="card card-body mt-3">
-              <button class="btn btn-primary w-25 fw-bold align-self-center" type="submit">Process Text</button>
+            <div class="card card-body mt-3 div-engla">
+              <button class="btn w-25 fw-bold align-self-center process-btn" type="submit">Process Text</button>
               
               <div id="div-result" class="form-floating mt-3">
                 <textarea class="form-control form-textarea" readonly></textarea>
@@ -121,11 +153,122 @@
           </form>
         </div>
 
-          <!-- Log Tables
+
+          <!--  Factual Answering -->
+        <div id="div_prompts_fa" class="card card-body mt-3 d-none">
+          <div id="div_fa" class="d-flex justify-content-start align-items-center">
+            <img class="w-20 h-10" src="./images/img_factual_answering.png">
+            <div class="ml-3 mr-5">
+            <button id="btn_back_tools_fa" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Back</button>
+            <button id="btn_logs_fa" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
+            <button id="btn_logout_fa" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+            </div>
+          </div>
+
+          <!-- Tools Type -->
+          <form id="form_openai_fa">
+            <div class="row mb-3 text-start text-center">
+              <div id="div_tools_no2" class="col">
+                <div class="form-check">
+                  <input class="form-check-input mt-3" type="radio" name="tools-type" value="Factual Answering" id="flexRadioDefault2" checked>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    <img class="w-100 h-75" src="./images/img_factual_answering.png">
+                  </label>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Extraction Type -->
+            <div class="row mb-3 text-start">
+              <label class="fw-bold">Type of Extraction</label>
+            </div>
+            <p class="text-start">Text</p>
+            <!-- <button id="btn-text" value="text">Text</button> -->
+            <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <p class="active">Text</p>
+              </li> -->
+              <!-- <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" type="button" role="tab" aria-controls="pills-image" aria-selected="false">Image</button>
+              </li> -->
+            </ul>
+            <div class="tab-content">
+              <!-- Type: Text Only -->
+              <div class="active">
+                <div class="card card-body div-fa">
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control form-textarea" name="sentence-text"></textarea>
+                    <label class="fw-bold" for="floatingTextarea">Text</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Type: Image -->
+              <!-- <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
+                <div class="card card-body div-fa">
+                  <div class="row mb-3">
+                    <div class="col">
+                      <input class="form-control fw-bold" type="file" id="file_extract">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-primary w-100 fw-bold" type="button" id="btn_extract">Extract Text</button>
+                    </div>
+                  </div>
+        
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control form-textarea" name="sentence-img"></textarea>
+                    <label class="fw-bold" for="floatingTextarea">Extracted Text</label>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            
+            <!-- Result -->
+            <div class="card card-body mt-3 div-fa">
+              <button class="btn w-25 fw-bold align-self-center process-btn-fa" type="submit">Process Text</button>
+              
+              <div id="div-results" class="form-floating mt-3">
+                <textarea class="form-control form-textarea" readonly></textarea>
+                <label class="fw-bold" for="floatingTextarea">Result</label>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+
+
+          <!-- Log Tables for All Prompts-->
+          <div id="div_tbl_all" class="card card-body mt-3 d-none">
+            <div class="d-flex justify-content-end m">
+            <button id="btn_back_all" class="btn btn-success mb-1 fw-bold align-self-end  m-2">Back</button>
+            <!-- <button id="btn_logout2" class="btn btn-danger mb-1 fw-bold align-self-end  m-2">Logout</button> -->
+            </div>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">AI Tool</th>
+                  <th scope="col">Text</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Date</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody id="tbl_prompts_all" class="table-group-divider">
+                <tr>
+                  <th scope="row" colspan="6">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Log Tables for English to Another Language -->
           <div id="div_tbl" class="card card-body mt-3 d-none">
-            <button id="btn_logout" class="btn btn-light mb-1 fw-bold align-self-end">Logout</button>
-            <button id="btn_back" class="btn btn-light mb-1 fw-bold align-self-end">Back</button>
-  
+            <div class="d-flex justify-content-end m">
+            <button id="btn_back" class="btn btn-success mb-1 fw-bold align-self-end  m-2">Back</button>
+            <button id="btn_logout2" class="btn btn-danger mb-1 fw-bold align-self-end  m-2">Logout</button>
+            </div>
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
@@ -145,14 +288,14 @@
                 </tr>
               </tbody>
             </table>
-          </div> -->
-
-          <!-- Log Tables -->
-          <div id="div_tbl" class="card card-body mt-3 d-none">
-            <div class="d-flex justify-content-end m">
-            <button id="btn_back" class="btn btn-success mb-1 fw-bold align-self-end  m-2">Back</button>
-            <button id="btn_logout" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
           </div>
+
+          <!-- Log Tables for Factual Answering -->
+          <div id="div_tbl_fa" class="card card-body mt-3 d-none">
+            <div class="d-flex justify-content-end m">
+            <button id="btn_back_fa" class="btn btn-success mb-1 fw-bold align-self-end  m-2">Back</button>
+            <button id="btn_logout_fa2" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+              </div>
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
@@ -164,7 +307,7 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody id="tbl_prompts" class="table-group-divider">
+              <tbody id="tbl_prompts_fa" class="table-group-divider">
                 <tr>
                   <th scope="row" colspan="6">
                     <div class="d-flex justify-content-center align-items-center">
@@ -175,6 +318,81 @@
                 </tr>
               </tbody>
             </table>
+
+            <div id="div_form">
+              <div id="div_prompts" class="card card-body mt-3 d-none">
+                <div class="d-flex justify-content-end m">
+                  <button id="btn_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
+                  <button id="btn_logout" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+                </div>
+                <form id="form_openai">
+                  <!-- Tools Type -->
+                  <div class="row mb-3 text-start">
+                    <label class="fw-bold">OpenAI Tools</label>
+                    <div class="col">
+                      <div class="form-check">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          <img class="w-100 h-75" src="./images/img_english_to_another_language.png">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+          
+                  <!-- Extraction Type -->
+                  <div class="row mb-3 text-start">
+                    <label class="fw-bold">Type of Extraction</label>
+                  </div>
+                  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active fw-bold" id="pills-text-tab" data-bs-toggle="pill" data-bs-target="#pills-text" type="button" role="tab" aria-controls="pills-text" aria-selected="true">Text</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link fw-bold" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" type="button" role="tab" aria-controls="pills-image" aria-selected="false">Image</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <!-- Type: Text Only -->
+                    <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-text-tab" tabindex="0">
+                      <div class="card card-body">
+                        <div class="form-floating mb-3">
+                          <textarea class="form-control form-textarea" name="sentence-text"></textarea>
+                          <label class="fw-bold" for="floatingTextarea">Text</label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Type: Image -->
+                    <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
+                      <div class="card card-body">
+                        <div class="row mb-3">
+                          <div class="col">
+                            <input class="form-control fw-bold" type="file" id="file_extract">
+                          </div>
+                          <div class="col">
+                            <button class="btn btn-primary w-100 fw-bold" type="button" id="btn_extract">Extract Text</button>
+                          </div>
+                        </div>
+              
+                        <div class="form-floating mb-3">
+                          <textarea class="form-control form-textarea" name="sentence-img"></textarea>
+                          <label class="fw-bold" for="floatingTextarea">Extracted Text</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Result -->
+                  <div class="card card-body mt-3">
+                    <button class="btn btn-primary w-25 fw-bold align-self-center" type="submit">Process Text</button>
+                    
+                    <div id="div-result" class="form-floating mt-3">
+                      <textarea class="form-control form-textarea" readonly></textarea>
+                      <label class="fw-bold" for="floatingTextarea">Result</label>
+                    </div>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
     <!-- End of Container -->
     </div>
 
@@ -182,4 +400,5 @@
   </body>
   <script src="./js/index.js"></script>
   <script src="./js/logs.js"></script>
+  <script src="./js/fa_logs.js"></script>
 </html>

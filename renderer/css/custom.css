@@ -25,7 +25,7 @@
 .sample{
     background-color: gray;
 }
-#pagination {
+/* #pagination {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
@@ -52,4 +52,53 @@
   .pagination .page-item.active .page-link {
     background-color: #007bff;
     color: #fff;
+  } */
+  .fa-btn{
+    background-color: violet;
+    border: none;
+    color: white;
+  }
+  .fa-btn:hover{
+    background-color: violet;
+    border: none;
+    color: black;
+  }
+  .btn-engla{
+    background-color: rgb(140, 59, 231);
+    border: none;
+    color: white;
+  }
+  .btn-engla:hover{
+    background-color: rgb(140, 59, 231);
+    border: none;
+    color: black;
+  }
+  .tool1_txt{
+    font-size: 2rem;
+  }
+  .div-engla{
+    background-color: rgb(140, 59, 231);
+  }
+  .div-fa{
+    background-color: violet;
+  }
+  .process-btn{
+    color: white;
+    background-color: rgb(47, 195, 221);
+    border: transparent;
+  }
+  .process-btn:hover{
+    color: black;
+    background-color: rgb(47, 195, 221);
+    border: transparent;
+  }
+  .process-btn-fa{
+    background-color:rgb(197, 62, 209);
+    border: transparent;
+    color: white;
+  }
+  .process-btn-fa:hover{
+    background-color:rgb(197, 62, 209);
+    border: transparent;
+    color: black;
   }

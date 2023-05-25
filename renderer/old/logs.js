@@ -60,6 +60,9 @@ if (form_login) {
 
     btn_submit.innerHTML = 'Login';
     btn_submit.disabled = false;
+
+    // Load Table
+    getPrompts();
   };
 }
 
@@ -154,6 +157,7 @@ if (btn_back) {
     div_engla.classList.add('d-flex');
     div_prompts.classList.remove('d-none');
     div_prompts.classList.add('d-flex');
+    getPrompts();
     }
 }
 
@@ -171,6 +175,7 @@ if (btn_back_all) {
     div_prompts.classList.add('d-none');
     div_tools.classList.remove('d-none');
     div_tools.classList.add('d-flex');
+    // getPrompts();
     }
 }
 
@@ -378,7 +383,7 @@ async function getPromptsAll () {
     });
 
     const tbody = document.getElementById('tbl_prompts_all');
-    tbody.innerHTML = htmlResult;
+    // tbody.innerHTML = htmlResult;
 }
   
 

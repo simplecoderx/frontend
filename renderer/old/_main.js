@@ -205,12 +205,20 @@ async function tesseract(event, filepath){
 async function backendLaravelPost(event, method='post', id = '', data = null){
   let result = null;
   const env = dotenv.parsed;
+  // let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
   await axios({
       method: method,
       url: 'http://backend.test/api/prompt',
+      // url: 'http://backend.test/api/prompt' + query,
+      // headers:( method == 'post' ? {
+      //     'Accept': 'application/json',
+      //   } : {
+      //     'Accept': 'application/json',
+      //   } ),
       headers:{
         'Accept': 'application/json',
       },
+      // data: ( method == 'post' ? data : null )
       data: data
     }).then(function (response) {
       result = response.data;
@@ -228,6 +236,11 @@ async function backendLaravelDelete(event, method='delete', id = '', data = null
   await axios({
       method: method,
       url: 'http://backend.test/api/prompts/' + id,
+      // headers:( method == 'post' ? {
+      //     'Accept': 'application/json',
+      //   } : {
+      //     'Accept': 'application/json',
+      //   } ),
       headers: {
         'Accept': 'application/json',
       },
@@ -249,6 +262,12 @@ async function backendLaravel(event, method, path, data = null, token = ''){
   await axios({
       method: method,
       url: 'http://backend.test/api/' + path,
+      // headers: ( token == '' ? { 
+      //       'Accept': 'application/json',
+      //   } : {
+      //       'Accept': 'application/json',
+      //       'Authorization': 'Bearer ' + token
+      //   } ),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
