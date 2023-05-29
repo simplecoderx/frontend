@@ -80,11 +80,12 @@ if (form_openai_fa) {
     let tools_type = formData.get("tools-type");
     // let extraction_type = document.getElementById("btn-text");
     let sentence = formData.get("sentence-text");
+    // console.log(sentence);
 
-    if (tools_type == null) {
-      alertMessage("error", "Please choose OpenAI Tools!");
-      return;
-    }
+    // if (tools_type == null) {
+    //   alertMessage("error", "Please choose OpenAI Tools!");
+    //   return;
+    // }
 
     if (sentence.length <= 8) {
       alertMessage("error", "Please input text at least 8 characters or upload image to extract text!");

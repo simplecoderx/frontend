@@ -1,0 +1,298 @@
+[
+  {
+    "prompt_id": 2,
+    "tools_type": "Grammar Correction",
+    "text": "This is some sample text",
+    "result": "This is the corrected text",
+    "created_at": "2023-05-08 03:47:33",
+    "updated_at": "2023-05-08 03:47:33"
+  },
+  {
+    "prompt_id": 3,
+    "tools_type": "Grammar Correction",
+    "text": "This is some sample text",
+    "result": "This is the corrected text",
+    "created_at": "2023-05-08 03:48:41",
+    "updated_at": "2023-05-08 03:48:41"
+  },
+  {
+    "prompt_id": 4,
+    "tools_type": "Grammar Correction",
+    "text": "sample",
+    "result": "sample",
+    "created_at": "2023-05-08 03:57:02",
+    "updated_at": "2023-05-08 03:57:02"
+  },
+  {
+    "prompt_id": 5,
+    "tools_type": "Grammar Correction",
+    "text": "run sun thunderstorm faster",
+    "result": "Run from the thunderstorm faster.",
+    "created_at": "2023-05-08 08:27:40",
+    "updated_at": "2023-05-08 08:27:40"
+  },
+  {
+    "prompt_id": 6,
+    "tools_type": "Grammar Correction",
+    "text": "she went no run to market the",
+    "result": "She did not go running to the market.",
+    "created_at": "2023-05-09 15:20:10",
+    "updated_at": "2023-05-09 15:20:10"
+  },
+  {
+    "prompt_id": 9,
+    "tools_type": "Grammar Correction",
+    "text": "translate this into chinese: who are you?",
+    "result": "你是谁？",
+    "created_at": "2023-05-09 16:09:46",
+    "updated_at": "2023-05-09 16:09:46"
+  },
+  {
+    "prompt_id": 10,
+    "tools_type": "Grammar Correction",
+    "text": "run sun thunderstorm faster",
+    "result": "Run from the thunderstorm faster.",
+    "created_at": "2023-05-10 10:11:06",
+    "updated_at": "2023-05-10 10:11:06"
+  },
+  {
+    "prompt_id": 32,
+    "tools_type": "Factual Answering",
+    "text": "who is mariah carey?",
+    "result": "Mariah Carey is an American singer, songwriter, actress, and record producer. She is one of the best-selling music artists of all time, having sold more than 200 million records globally.",
+    "created_at": "2023-05-22 20:01:40",
+    "updated_at": "2023-05-22 20:01:40"
+  },
+  {
+    "prompt_id": 33,
+    "tools_type": "Factual Answering",
+    "text": "who is john wick?",
+    "result": "John Wick is a fictional character and the protagonist of the John Wick film series. He is portrayed by Keanu Reeves. He is an ex-hitman and master assassin who comes out of retirement to seek revenge for the death of his beloved dog.",
+    "created_at": "2023-05-23 06:45:31",
+    "updated_at": "2023-05-23 06:45:31"
+  },
+  {
+    "prompt_id": 34,
+    "tools_type": "Factual Answering",
+    "text": "who is wonder woman?",
+    "result": "Batman is a fictional superhero appearing in American comic books published by DC Comics. Wonder Woman is a fictional superheroine appearing in American comic books published by DC Comics.",
+    "created_at": "2023-05-23 07:33:07",
+    "updated_at": "2023-05-23 07:33:07"
+  },
+  {
+    "prompt_id": 35,
+    "tools_type": "Factual Answering",
+    "text": "who is wonder woman?",
+    "result": "Batman is a fictional superhero appearing in American comic books published by DC Comics. Wonder Woman is a fictional superheroine appearing in American comic books published by DC Comics.",
+    "created_at": "2023-05-23 07:34:37",
+    "updated_at": "2023-05-23 07:34:37"
+  },
+  {
+    "prompt_id": 37,
+    "tools_type": "Factual Answering",
+    "text": "who is john wick in real life?",
+    "result": "Keanu Reeves is the actor who portrays John Wick in the movie franchise.",
+    "created_at": "2023-05-23 07:35:51",
+    "updated_at": "2023-05-23 07:35:51"
+  },
+  {
+    "prompt_id": 38,
+    "tools_type": "Factual Answering",
+    "text": "who is john wick in real life?",
+    "result": "John Wick is a fictional character portrayed by actor Keanu Reeves in the John Wick film series.",
+    "created_at": "2023-05-23 07:37:26",
+    "updated_at": "2023-05-23 07:37:26"
+  },
+  {
+    "prompt_id": 39,
+    "tools_type": "Factual Answering",
+    "text": "who is the president of the Philippines?",
+    "result": "Rodrigo Duterte is the current President of the Philippines.",
+    "created_at": "2023-05-23 07:39:33",
+    "updated_at": "2023-05-23 07:39:33"
+  },
+  {
+    "prompt_id": 40,
+    "tools_type": "English to Another Language",
+    "text": "translate this into Cebuano/Visayan: who are you?",
+    "result": "Kinsa ka?",
+    "created_at": "2023-05-23 07:40:30",
+    "updated_at": "2023-05-23 07:40:30"
+  },
+  {
+    "prompt_id": 41,
+    "tools_type": "Factual Answering",
+    "text": "what is the most in demand programming language today?",
+    "result": "A: Batman is a fictional superhero appearing in American comic books published by DC Comics. The most in demand programming language today is JavaScript.",
+    "created_at": "2023-05-23 07:49:30",
+    "updated_at": "2023-05-23 07:49:30"
+  },
+  {
+    "prompt_id": 42,
+    "tools_type": "Factual Answering",
+    "text": "what is the most in demand programming language today?",
+    "result": "A: Batman is a fictional superhero appearing in American comic books published by DC Comics. The most in demand programming language today is JavaScript.",
+    "created_at": "2023-05-23 07:50:56",
+    "updated_at": "2023-05-23 07:50:56"
+  },
+  {
+    "prompt_id": 43,
+    "tools_type": "Factual Answering",
+    "text": "what is the most in demand programming language today?",
+    "result": "A: Batman is a fictional superhero appearing in American comic books published by DC Comics. The most in demand programming language today is JavaScript.",
+    "created_at": "2023-05-23 07:54:11",
+    "updated_at": "2023-05-23 07:54:11"
+  },
+  {
+    "prompt_id": 44,
+    "tools_type": "English to Another Language",
+    "text": "translate this into Cebuano: where are you going?",
+    "result": "Unsa imong gihulagway?",
+    "created_at": "2023-05-23 07:55:06",
+    "updated_at": "2023-05-23 07:55:06"
+  },
+  {
+    "prompt_id": 45,
+    "tools_type": "Factual Answering",
+    "text": "what is the most in demand programming language today?",
+    "result": "A: Batman is a fictional superhero appearing in American comic books published by DC Comics. The most in demand programming language today is JavaScript.",
+    "created_at": "2023-05-23 07:55:21",
+    "updated_at": "2023-05-23 07:55:21"
+  },
+  {
+    "prompt_id": 46,
+    "tools_type": "Factual Answering",
+    "text": "what is the most beautiful flower?",
+    "result": "This is subjective and can vary depending on personal preference. Some of the most popularly considered beautiful flowers include roses, tulips, lilies, orchids, sunflowers, and daisies.",
+    "created_at": "2023-05-23 07:56:28",
+    "updated_at": "2023-05-23 07:56:28"
+  },
+  {
+    "prompt_id": 47,
+    "tools_type": "Factual Answering",
+    "text": "what is the most in demand programming language today?",
+    "result": "The most in demand programming language today is JavaScript. It is used for web development, mobile app development, game development, and more. It is also one of the most popular languages, with over 70% of developers using it.",
+    "created_at": "2023-05-23 07:58:18",
+    "updated_at": "2023-05-23 07:58:18"
+  },
+  {
+    "prompt_id": 48,
+    "tools_type": "Factual Answering",
+    "text": "what is a daisy?",
+    "result": "A daisy is a type of flowering plant in the Asteraceae family. It is characterized by its white petals and yellow center. Daisies are often used as a symbol of innocence and purity.",
+    "created_at": "2023-05-23 08:02:17",
+    "updated_at": "2023-05-23 08:02:17"
+  },
+  {
+    "prompt_id": 49,
+    "tools_type": "Factual Answering",
+    "text": "what is my name?",
+    "result": "That is not a fair question to ask.",
+    "created_at": "2023-05-23 08:29:23",
+    "updated_at": "2023-05-23 08:29:23"
+  },
+  {
+    "prompt_id": 50,
+    "tools_type": "Factual Answering",
+    "text": "who is the first president of the philippines?",
+    "result": "The first president of the Philippines was Emilio Aguinaldo, who served from January 23, 1899 to April 1, 1901.",
+    "created_at": "2023-05-23 08:30:47",
+    "updated_at": "2023-05-23 08:30:47"
+  },
+  {
+    "prompt_id": 51,
+    "tools_type": "Factual Answering",
+    "text": "who is the first president of the philippines?",
+    "result": "The first president of the Philippines was Emilio Aguinaldo, who served from January 23, 1899 to April 1, 1901.",
+    "created_at": "2023-05-23 08:31:05",
+    "updated_at": "2023-05-23 08:31:05"
+  },
+  {
+    "prompt_id": 52,
+    "tools_type": "Factual Answering",
+    "text": "who is magellan?",
+    "result": "Magellan was a Portuguese explorer who led the first expedition to circumnavigate the globe. He set sail in 1519 and completed the voyage in 1522. He was killed in the Philippines during the voyage.",
+    "created_at": "2023-05-23 08:34:33",
+    "updated_at": "2023-05-23 08:34:33"
+  },
+  {
+    "prompt_id": 53,
+    "tools_type": "Factual Answering",
+    "text": "give me facts about koreans",
+    "result": "1. South Korea has a population of 51.6 million people, making it the 27th most populous country in the world.\n2. South Korea has the world’s fastest internet connection speed, with an average of 26.7 Mbps.\n3. South Korea has the",
+    "created_at": "2023-05-23 08:42:09",
+    "updated_at": "2023-05-23 08:42:09"
+  },
+  {
+    "prompt_id": 54,
+    "tools_type": "English to Another Language",
+    "text": "translate this into Cebuano/Visayan: i know i will!",
+    "result": "Ako nalang nahibalo nga ako!",
+    "created_at": "2023-05-23 08:47:14",
+    "updated_at": "2023-05-23 08:47:14"
+  },
+  {
+    "prompt_id": 55,
+    "tools_type": "Factual Answering",
+    "text": "WHO ARE YOU?",
+    "result": "I am a computer program.",
+    "created_at": "2023-05-23 08:51:13",
+    "updated_at": "2023-05-23 08:51:13"
+  },
+  {
+    "prompt_id": 56,
+    "tools_type": "Factual Answering",
+    "text": "Give me best 5 spots in London",
+    "result": "1. Tower of London\n2. Buckingham Palace\n3. Westminster Abbey\n4. The British Museum\n5. Hyde Park",
+    "created_at": "2023-05-23 08:51:40",
+    "updated_at": "2023-05-23 08:51:40"
+  },
+  {
+    "prompt_id": 57,
+    "tools_type": "English to Another Language",
+    "text": "translate this into spain: how are you?",
+    "result": "¿Cómo estás?",
+    "created_at": "2023-05-24 14:20:18",
+    "updated_at": "2023-05-24 14:20:18"
+  },
+  {
+    "prompt_id": 58,
+    "tools_type": "Factual Answering",
+    "text": "how to survive college?",
+    "result": "1. Make a plan and stick to it: Set a schedule for yourself and stick to it. Make sure to include time for studying, attending classes, and socializing.\n\n2. Get organized: Make sure to keep track of all your assignments, due dates, and exams.",
+    "created_at": "2023-05-24 14:20:55",
+    "updated_at": "2023-05-24 14:20:55"
+  },
+  {
+    "prompt_id": 59,
+    "tools_type": "English to Another Language",
+    "text": "translate this into thai: good morning",
+    "result": "สวัสดีตอนเช้า",
+    "created_at": "2023-05-24 14:57:35",
+    "updated_at": "2023-05-24 14:57:35"
+  },
+  {
+    "prompt_id": 60,
+    "tools_type": "English to Another Language",
+    "text": "translate this into Cebuano/Visayan: i love programming",
+    "result": "Gusto ko sa pagprograma.",
+    "created_at": "2023-05-25 02:46:28",
+    "updated_at": "2023-05-25 02:46:28"
+  },
+  {
+    "prompt_id": 61,
+    "tools_type": "English to Another Language",
+    "text": "translate this into Spanish: i love programming",
+    "result": "Me encanta programar.",
+    "created_at": "2023-05-28 11:54:47",
+    "updated_at": "2023-05-28 11:54:47"
+  },
+  {
+    "prompt_id": 62,
+    "tools_type": "Factual Answering",
+    "text": "what is METHIONYLTHREONYLTHREONYGLUTAMINYLARGINYLISOLEUCINE?",
+    "result": "Methionylthreonylthreonyglutaminylarginylisoleucine is an artificial amino acid used in the production of proteins. It is composed of the amino acids methionine, threonine, glutamine, arginine, and isole",
+    "created_at": "2023-05-28 12:28:12",
+    "updated_at": "2023-05-28 12:28:12"
+  }
+]

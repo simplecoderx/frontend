@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 
 // Global Variables
-const isDev = true;
+const isDev = false;
 const isMac = process.platform === 'darwin';
 const template = [
   // { role: 'appMenu' }
@@ -159,7 +159,7 @@ async function openAI(event, sentence, tools_type){
       url: 'https://api.openai.com/v1/completions',
       data: {
         model: "text-davinci-003",
-        prompt: ( tools_type == 'English to Another Language' ? "Translate this into" : "?\n" ) +  sentence,
+        prompt: ( tools_type == 'English to Another Language' ? "Translate this into: " : "Factual Answering\n\n" ) +  sentence,
         temperature: ( tools_type == 'English to Another Language' ? 0.3 : 0 ),
         max_tokens: ( tools_type == 'English to Another Language' ? 100 : 60 ),
         top_p: 1.0,

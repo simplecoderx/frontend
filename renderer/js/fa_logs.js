@@ -151,12 +151,13 @@ async function getPrompts_fa() {
 
     // Load table from API Response
     let htmlResult = '';
+    let index = 1;
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
 
         if (response[key].tools_type === 'Factual Answering') {
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            '<th scope="row">' +  index + '</th>' +
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
@@ -168,6 +169,7 @@ async function getPrompts_fa() {
                     '</button>' +
                 '</div>' +
         '</tr>';
+        index++;
     }
     });
 

@@ -327,12 +327,14 @@ async function getPrompts () {
 
     // Load table from API Response
     let htmlResult = '';
+    let index = 1;
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
         
         if (response[key].tools_type === 'English to Another Language') {
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            //'<th scope="row">' +  response[key].prompt_id + '</th>' +
+            '<th scope="row">' +  index + '</th>' +
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
@@ -344,6 +346,7 @@ async function getPrompts () {
                     '</button>' +
                 '</div>' +
         '</tr>';
+        index++;
         }
     });
 
@@ -359,11 +362,12 @@ async function getPromptsAll () {
 
     // Load table from API Response
     let htmlResult = '';
+    let index = 1;
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
         
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            '<th scope="row">' +  index + '</th>' +
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
@@ -375,6 +379,7 @@ async function getPromptsAll () {
                     '</button>' +
                 '</div>' +
         '</tr>';
+        index++;
     });
 
     const tbody = document.getElementById('tbl_prompts_all');
