@@ -57,7 +57,8 @@ if (tbl_prompts_fa) {
     tbl_prompts_fa.onclick = async function (e) {
         if(e.target && e.target.id == "btn_prompts_del") {
             const id = e.target.name;
-            const response = await window.axios.backendLaravelDelete('delete', id);
+            const token = sessionStorage.getItem('token');
+            const response = await window.axios.backendLaravelDelete('delete', id, null, token);
             console.log(response);
             
             alertMessage("success", "Successfully deleted id " + id + '!');
