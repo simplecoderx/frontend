@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Language Selector</title>
+  <style>
+    .container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .language-selector {
+      margin-right: 10px;
+    }
+    
+    .language-selector select {
+      padding: 5px;
+    }
+    
+    #input-text, #translated-text {
+      width: 300px;
+      height: 100px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="language-selector">
+      <select id="source-language">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <!-- Add more language options as needed -->
+      </select>
+    </div>
+
+    <div class="language-selector">
+      <select id="target-language">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <!-- Add more language options as needed -->
+      </select>
+    </div>
+
+    <div>
+      <textarea id="input-text" placeholder="Enter text to translate"></textarea>
+      <textarea id="translated-text" placeholder="Translated text will appear here" readonly></textarea>
+    </div>
+  </div>
+
+  <script>
+    const sourceLanguageSelect = document.getElementById('source-language');
+    const targetLanguageSelect = document.getElementById('target-language');
+    const inputText = document.getElementById('input-text');
+    const translatedText = document.getElementById('translated-text');
+
+    sourceLanguageSelect.addEventListener('change', handleLanguageChange);
+    targetLanguageSelect.addEventListener('change', handleLanguageChange);
+    inputText.addEventListener('input', handleLanguageChange);
+
+    function handleLanguageChange() {
+      const sourceLanguage = sourceLanguageSelect.value;
+      const targetLanguage = targetLanguageSelect.value;
+      const textToTranslate = inputText.value;
+
+      console.log('Source Language:', sourceLanguage);
+      console.log('Target Language:', targetLanguage);
+      console.log('Text to Translate:', textToTranslate);
+
+      // Add your translation logic or API calls here
+
+      // Example translation using dummy logic
+      const translated = translateText(textToTranslate, sourceLanguage, targetLanguage);
+
+      translatedText.value = translated;
+    }
+
+    function translateText(text, sourceLanguage, targetLanguage) {
+      // Add your translation logic or API calls here
+      // Replace this dummy implementation with your actual translation code
+
+      // In this example, we simply prepend the source language code to the text
+      return `[${sourceLanguage}] ${text}`;
+    }
+  </script>
+</body>
+</html>

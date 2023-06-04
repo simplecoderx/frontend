@@ -168,6 +168,8 @@ async function getPrompts_fa() {
                     '</button>' +
                 '</div>' +
         '</tr>';
+
+
     }
     });
 

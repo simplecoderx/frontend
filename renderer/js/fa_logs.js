@@ -147,7 +147,8 @@ if (btn_logout_fa2) {
 // Read Prompts from Laravel for Factual Answering
 async function getPrompts_fa() {
     // Fetch API Response
-    const response = await window.axios.backendLaravel('get', 'prompts');
+    const token = sessionStorage.getItem('token');
+    const response = await window.axios.backendLaravel('get', 'prompts', null, token);
 
     // Load table from API Response
     let htmlResult = '';
@@ -161,7 +162,7 @@ async function getPrompts_fa() {
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
-            '<td>' + date.toLocaleString('en-US', { timeZone: 'UTC' }) + '</td>' +
+            '<td>' + date.toLocaleString('en-US', { timeZone: 'Asia/Manila' }) + '</td>' +
             '<td>' + 
                 '<div class="btn-group" role="group">' +
                     '<button id="btn_prompts_del" name="' + response[key].prompt_id + '" type="button" class="btn btn-danger btn-sm" aria-expanded="false">' +
@@ -175,4 +176,8 @@ async function getPrompts_fa() {
 
     const tbody = document.getElementById('tbl_prompts_fa');
     tbody.innerHTML = htmlResult;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
   }

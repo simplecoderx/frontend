@@ -49,15 +49,22 @@ if (form_openai) {
     const response = await window.axios.openAI(sentence, tools_type);
     let result = response.choices[0].text;
     document.querySelector("#div-result textarea").innerHTML = result.replace(/\n/g, "");
+
+    const token = sessionStorage.getItem('token');
+    // console.log(token)
     const db_response = await window.axios.backendLaravelPost('post', '', {
         text: sentence,
         result: result,
         tools_type: tools_type
-      });
+      }, token);
     console.log(db_response);
     
     btn_submit.innerHTML = 'Process Text';
     btn_submit.disabled = false;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
   };
 }
 
@@ -78,17 +85,10 @@ if (form_openai_fa) {
     const btn_submit = document.querySelector("#form_openai_fa button[type='submit']");
     const formData = new FormData(form_openai_fa);
     let tools_type = formData.get("tools-type");
-    // let extraction_type = document.getElementById("btn-text");
     let sentence = formData.get("sentence-text");
-    // console.log(sentence);
-
-    // if (tools_type == null) {
-    //   alertMessage("error", "Please choose OpenAI Tools!");
-    //   return;
-    // }
 
     if (sentence.length <= 8) {
-      alertMessage("error", "Please input text at least 8 characters or upload image to extract text!");
+      alertMessage("error", "Please input text at least 8 characters or upload an image to extract text!");
       return;
     }
 
@@ -98,15 +98,23 @@ if (form_openai_fa) {
     const response = await window.axios.openAI(sentence, tools_type);
     let result = response.choices[0].text;
     document.querySelector("#div-results textarea").innerHTML = result.replace(/\n/g, "");
+
+    const token = sessionStorage.getItem('token');
+    // console.log(token)
     const db_response = await window.axios.backendLaravelPost('post', '', {
-        text: sentence,
-        result: result,
-        tools_type: tools_type
-      });
+      text: sentence,
+      result: result,
+      tools_type: tools_type
+    }, token);
+
     console.log(db_response);
-    
+
     btn_submit.innerHTML = 'Process Text';
     btn_submit.disabled = false;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
   };
 }
 

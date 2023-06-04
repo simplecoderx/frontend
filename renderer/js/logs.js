@@ -323,8 +323,9 @@ if (btn_logout_index) {
 // Read Prompts from Laravel Filtered by Tools Type: English to Another Language
 async function getPrompts () {
     // Fetch API Response
-    const response = await window.axios.backendLaravel('get', 'prompts');
-
+    const token = sessionStorage.getItem('token');
+    const response = await window.axios.backendLaravel('get', 'prompts', null, token);
+    console.log(token);
     // Load table from API Response
     let htmlResult = '';
     let index = 1;
@@ -352,14 +353,20 @@ async function getPrompts () {
 
     const tbody = document.getElementById('tbl_prompts');
     tbody.innerHTML = htmlResult;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
 }
 
 
 // Read All Prompts from Laravel
 async function getPromptsAll () {
     // Fetch API Response
-    const response = await window.axios.backendLaravel('get', 'prompts');
-
+    const token = sessionStorage.getItem('token');
+    const response = await window.axios.backendLaravel('get', 'prompts', null, token);
+    console.log(token);
+    // console.log(response);
     // Load table from API Response
     let htmlResult = '';
     let index = 1;
@@ -384,34 +391,47 @@ async function getPromptsAll () {
 
     const tbody = document.getElementById('tbl_prompts_all');
     tbody.innerHTML = htmlResult;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
 }
   
 
-// Set Btn Delete Prompt Click functionality from Table Prompts
+// Set Btn Delete Prompt Click functionality from English to Another Language Table Prompts
 const tbl_prompts = document.getElementById('tbl_prompts');
 if (tbl_prompts) {
-    tbl_prompts.onclick = async function (e) {
-        if(e.target && e.target.id == "btn_prompts_del") {
-            const id = e.target.name;
-            const response = await window.axios.backendLaravelDelete('delete', id);
-            console.log(response);
-            
-            alertMessage("success", "Successfully deleted id " + id + '!');
-            getPrompts();
-        }
-    };
+  tbl_prompts.onclick = async function (e) {
+    if (e.target && e.target.id == "btn_prompts_del") {
+      const id = e.target.name;
+      const token = sessionStorage.getItem('token');
+      console.log("Delete button clicked "+token);
+
+      const response = await window.axios.backendLaravelDelete('delete', id, null, token);
+      console.log("after function calling "+token);
+      console.log(response);
+
+      alertMessage("success", "Successfully deleted id " + id + '!');
+      getPrompts();
+    }
+  };
 }
+
 
 const tbl_prompts_all = document.getElementById('tbl_prompts_all');
 if (tbl_prompts_all) {
     tbl_prompts_all.onclick = async function (e) {
         if(e.target && e.target.id == "btn_prompts_del") {
             const id = e.target.name;
-            const response = await window.axios.backendLaravelDelete('delete', id);
+            const token = sessionStorage.getItem('token');
+            console.log("Delete button clicked "+token);
+      
+            const response = await window.axios.backendLaravelDelete('delete', id, null, token);
+            console.log("after function calling "+token);
             console.log(response);
-            
+      
             alertMessage("success", "Successfully deleted id " + id + '!');
-            getPrompts();
+            getPromptsAll();
         }
     };
 }
