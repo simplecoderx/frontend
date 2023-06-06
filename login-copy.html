@@ -83,111 +83,93 @@
           </div>
         </div>
 
-<!-- English to Another Language -->
-<div id="div_prompts" class="card card-body mt-3 d-none">
-  <div id="div_engla" class="d-flex justify-content-start align-items-center">
-    <img class="w-20 h-10" src="./images/img_english_to_another_language.png">
-    <div class="ml-3 mr-5">
-      <button id="btn_back_tools" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Back</button>
-      <button id="btn_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
-      <button id="btn_logout1" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
-    </div>
-  </div>
+        <!-- English to Another Language -->
+        <div id="div_prompts" class="card card-body mt-3 d-none">
+          <div id="div_engla" class="d-flex justify-content-start align-items-center">
+            <img class="w-20 h-10" src="./images/img_english_to_another_language.png">
+            <div class="ml-3 mr-5">
+            <button id="btn_back_tools" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Back</button>
+            <button id="btn_logs" class="btn btn-sucess mb-1 fw-bold align-self-end m-2">Logs</button>
+            <button id="btn_logout1" class="btn btn-danger mb-1 fw-bold align-self-end">Logout</button>
+            </div>
+          </div>
 
-  <!-- Tools Type -->
-  <form id="form_openai">
-    <div class="row mb-3 text-start text-center">
-      <div id="div_tool_no1" class="col">
-        <div class="form-check">
-          <input class="form-check-input mt-3" type="radio" name="tools-type" value="English to Another Language" id="flexRadioDefault1" checked>
-          <label class="form-check-label" for="flexRadioDefault1">
-            <img class="w-100 h-75" src="./images/img_english_to_another_language.png">
-          </label>
-        </div>
-      </div>
-      <div id="div_tool_no2" class="col">
-        <div class="form-check">
-          <input class="form-check-input mt-3" type="radio" name="tools-type" value="Factual Answering" id="flexRadioDefault2">
-          <label class="form-check-label" for="flexRadioDefault2">
-            <img class="w-100 h-75" src="./images/img_factual_answering.png">
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <!-- Extraction Type -->
-    <div class="row mb-3 text-start">
-      <label class="fw-bold">Type of Extraction</label>
-    </div>
-    <p class="text-start">Text</p>
-    <div class="dropdown-container mb-1">
-      <div class="dropdown">
-        <a class="dropdown-toggle text-decoration-none" href="#" id="Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          English <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu text-decoration-none" aria-labelledby="Dropdown">
-          <li>
-            <a class="dropdown-item" href="#" name="english" value="english">English <i class="fa fa-check text-success ms-2"></i></a>
-          </li>
-          <li><hr class="dropdown-divider" /></li>
-          <li>
-            <a class="dropdown-item" href="#" name="polski" value="polski">Polski</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="中文" value="中文">中文</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="日本語" value="日本語">日本語</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="deutsch" value="deutsch">Deutsch</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="français" value="français">Français</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="Español" value="español">Español</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="Русский" value="русский">Русский</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" name="Português" value="português">Português</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    
-    
-
-    <div class="tab-content" id="pills-tabContent">
-      <!-- Type: Text Only -->
-      <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-text-tab" tabindex="0">
-        <div class="card card-body div-engla">
-          <div class="row">
-            <div class="col">
-              <div class="form-floating mb-3">
-                <textarea class="form-control form-textarea" name="sentence-text"></textarea>
-                <label class="fw-bold" for="floatingTextarea">Input</label>
+            <!-- Tools Type -->
+          <form id="form_openai">
+            <div class="row mb-3 text-start text-center">
+              <div id="div_tool_no1" class="col">
+                <div class="form-check">
+                  <input class="form-check-input mt-3" type="radio" name="tools-type" value="English to Another Language" id="flexRadioDefault1" checked>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    <img class="w-100 h-75" src="./images/img_english_to_another_language.png">
+                  </label>
+                </div>
+              </div>
+              <div id="div_tool_no2" class="col">
+                <div class="form-check">
+                  <input class="form-check-input mt-3" type="radio" name="tools-type" value="Factual Answering" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    <img class="w-100 h-75" src="./images/img_factual_answering.png">
+                  </label>
+                </div>
               </div>
             </div>
-            <div class="col">
-              <div id="div-result" class="form-floating mb-3">
+    
+            <!-- Extraction Type -->
+            <div class="row mb-3 text-start">
+              <label class="fw-bold">Type of Extraction</label>
+            </div>
+            <p class="text-start">Text</p>
+            <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="pills-text-tab" data-bs-toggle="pill" data-bs-target="#pills-text" type="button" role="tab" aria-controls="pills-text" aria-selected="true">Text</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" type="button" role="tab" aria-controls="pills-image" aria-selected="false">Image</button>
+              </li>
+            </ul> -->
+            <div class="tab-content" id="pills-tabContent">
+              <!-- Type: Text Only -->
+              <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-text-tab" tabindex="0">
+                <div class="card card-body div-engla">
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control form-textarea" name="sentence-text"></textarea>
+                    <label class="fw-bold" for="floatingTextarea">Text</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Type: Image -->
+              <!-- <div class="tab-pane fade" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
+                <div class="card card-body div-engla">
+                  <div class="row mb-3">
+                    <div class="col">
+                      <input class="form-control fw-bold" type="file" id="file_extract">
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-primary w-100 fw-bold" type="button" id="btn_extract">Extract Text</button>
+                    </div>
+                  </div>
+        
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control form-textarea" name="sentence-img"></textarea>
+                    <label class="fw-bold" for="floatingTextarea">Extracted Text</label>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            
+            <!-- Result -->
+            <div class="card card-body mt-3 div-engla">
+              <button class="btn w-25 fw-bold align-self-center process-btn" type="submit">Process Text</button>
+              
+              <div id="div-result" class="form-floating mt-3">
                 <textarea class="form-control form-textarea" readonly></textarea>
                 <label class="fw-bold" for="floatingTextarea">Result</label>
               </div>
-              <!-- <button class="btn w-25 fw-bold align-self-center process-btn" type="submit">Process Text</button> -->
             </div>
-            <div class="row justify-content-center">
-              <button class="btn w-25 fw-bold process-btn" type="submit">Process Text</button>
-            </div>            
-          </div>
+            
+          </form>
         </div>
-      </div>
-    </div>
-  </form>
-</div>
-
 
 
           <!--  Factual Answering -->

@@ -159,9 +159,9 @@ async function openAI(event, sentence, tools_type){
       url: 'https://api.openai.com/v1/completions',
       data: {
         model: "text-davinci-003",
-        prompt: ( tools_type == 'English to Another Language' ? "Translate this into" : "?\n" ) +  sentence,
+        prompt: ( tools_type == 'English to Another Language' ? "Translate this into: " : "Factual Answering\n\n" ) +  sentence,
         temperature: ( tools_type == 'English to Another Language' ? 0.3 : 0 ),
-        max_tokens: ( tools_type == 'English to Another Language' ? 100 : 60 ),
+        max_tokens: ( tools_type == 'English to Another Language' ? 100 : 1000 ),
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0
@@ -202,47 +202,39 @@ async function tesseract(event, filepath){
 }
 
 // Axios LaravelPost API
-async function backendLaravelPost(event, method='post', id = '', data = null){
+async function backendLaravelPost(event, method = 'post', id = '', data = null, token = '') {
   let result = null;
   const env = dotenv.parsed;
-  // let query = ( method == 'get' ? '?select=*' : (method == 'delete' ? '?prompt_id=eq.' + id : '') );
+
   await axios({
-      method: method,
-      url: 'http://backend.test/api/prompt',
-      // url: 'http://backend.test/api/prompt' + query,
-      // headers:( method == 'post' ? {
-      //     'Accept': 'application/json',
-      //   } : {
-      //     'Accept': 'application/json',
-      //   } ),
-      headers:{
-        'Accept': 'application/json',
-      },
-      // data: ( method == 'post' ? data : null )
-      data: data
-    }).then(function (response) {
-      result = response.data;
-    })
-    .catch(function (error) {
-      result = error.response.data;
-    });
-  return result;
+    method: method,
+    url: 'http://backend.test/api/prompts',
+    headers:{
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    data: data
+  }).then(function (response) {
+    result = response.data;
+  })
+  .catch(function (error) {
+    result = error.response.data;
+  });
+return result;
 }
 
+
+
 // Axios LaravelDelete API
-async function backendLaravelDelete(event, method='delete', id = '', data = null){
+async function backendLaravelDelete(event, method='delete', id = '', data = null, token=''){
   let result = null;
   const env = dotenv.parsed;
   await axios({
       method: method,
       url: 'http://backend.test/api/prompts/' + id,
-      // headers:( method == 'post' ? {
-      //     'Accept': 'application/json',
-      //   } : {
-      //     'Accept': 'application/json',
-      //   } ),
       headers: {
         'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
       },
       data: data
     }).then(function (response) {
@@ -262,16 +254,10 @@ async function backendLaravel(event, method, path, data = null, token = ''){
   await axios({
       method: method,
       url: 'http://backend.test/api/' + path,
-      // headers: ( token == '' ? { 
-      //       'Accept': 'application/json',
-      //   } : {
-      //       'Accept': 'application/json',
-      //       'Authorization': 'Bearer ' + token
-      //   } ),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
-    },
+      },
       data: data
     }).then(function (response) {
       result = response.data;

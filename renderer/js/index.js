@@ -21,6 +21,71 @@ if (btn_extract) {
   };
 }
 
+// Form Login
+const form_login = document.getElementById("form_login");
+if (form_login) {
+    form_login.onsubmit = async function (e) {
+    e.preventDefault();
+
+    const btn_submit = document.querySelector("#form_login button[type='submit']");
+    const formData = new FormData(form_login);
+
+    btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
+    btn_submit.disabled = true;
+
+    const response = await window.axios.backendLaravel('post', 'login', {
+            email: formData.get("email"),
+            password: formData.get("password"),
+        } );
+
+    // If email and password validation fails 
+    if ( response.user == null ) {
+        const field_email = document.querySelector("#form_login input[name='email']");
+        const field_password = document.querySelector("#form_login input[name='password']");
+        const invalid_email = document.getElementById("invalid_email");
+        const invalid_password = document.getElementById("invalid_password");
+
+        if ( response.errors.email == undefined ) {
+            invalid_email.innerHTML = '';
+            field_email.classList.remove('is-invalid');
+        }
+        else {
+            invalid_email.innerHTML = response.errors.email;
+            field_email.classList.add('is-invalid');
+        }
+        
+        if ( response.errors.password == undefined ) {
+            invalid_password.innerHTML = '';
+            field_password.classList.remove('is-invalid');
+        }
+        else {
+            invalid_password.innerHTML = response.errors.password;
+            field_password.classList.add('is-invalid');
+        }
+
+        btn_submit.innerHTML = 'Login';
+        btn_submit.disabled = false;
+        return;
+    }
+
+    // Store Token for Backend Laravel API access
+    sessionStorage.setItem('token', response.token);
+    alertMessage("success", "Successfully logged in account!");
+
+    // Hide Login Form and Show Tools
+    const div_login = document.getElementById("div_login");
+    const div_prompts = document.getElementById("div_prompts");
+    const div_tools = document.getElementById("div_tools");
+    div_login.classList.add('d-none');
+    div_prompts.classList.add('d-none');
+    div_tools.classList.remove('d-none');
+    div_tools.classList.add('d-flex');
+
+    btn_submit.innerHTML = 'Login';
+    btn_submit.disabled = false;
+  };
+}
+
 // Form Submit for English to Another Language
 const form_openai = document.getElementById("form_openai");
 if (form_openai) {
@@ -28,64 +93,12 @@ if (form_openai) {
     e.preventDefault();
 
     const btn_submit = document.querySelector("#form_openai button[type='submit']");
-    const formData = new FormData(form_openai);
-    let tools_type = formData.get("tools-type");
-    let extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
-    let sentence = extraction_type ? formData.get("sentence-text") : formData.get("sentence-img");
-
-    // if (tools_type == null) {
-    //   alertMessage("error", "Please choose OpenAI Tools!");
-    //   return;
-    // }
-
-    if (sentence.length <= 8) {
-      alertMessage("error", "Please input text at least 8 characters or upload image to extract text!");
-      return;
-    }
-
-    btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
-    btn_submit.disabled = true;
-
-    const response = await window.axios.openAI(sentence, tools_type);
-    let result = response.choices[0].text;
-    document.querySelector("#div-result textarea").innerHTML = result.replace(/\n/g, "");
-
-    const token = sessionStorage.getItem('token');
-    // console.log(token)
-    const db_response = await window.axios.backendLaravelPost('post', '', {
-        text: sentence,
-        result: result,
-        tools_type: tools_type
-      }, token);
-    console.log(db_response);
-    
-    btn_submit.innerHTML = 'Process Text';
-    btn_submit.disabled = false;
-
-    const authToken = token;
-    console.log(authToken);
-    sessionStorage.setItem('token', authToken);
-  };
-}
-
-//Factual Answering Button
-const fa_btn = document.getElementById("btn-text");
-if (fa_btn) {
-  fa_btn.onclick = async function () {
-    console.log(fa_btn.value);
-  }
-}
-
-// Form Submit for Factual Answering
-const form_openai_fa = document.getElementById("form_openai_fa");
-if (form_openai_fa) {
-  form_openai_fa.onsubmit = async function (e) {
-    e.preventDefault();
-
-    const btn_submit = document.querySelector("#form_openai_fa button[type='submit']");
-    const formData = new FormData(form_openai_fa);
-    let tools_type = formData.get("tools-type");
-    let sentence = formData.get("sentence-text");
+    const tools_type = document.querySelector("#form_openai [name='tools-type']").value;
+    const extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
+    const sentence = extraction_type
+      ? document.querySelector("#form_openai [name='sentence-text']").value
+      : document.querySelector("#form_openai [name='sentence-img']").value;
+    const selectedLanguage = document.querySelector("#Dropdown").innerText.trim();
 
     if (sentence.length <= 8) {
       alertMessage("error", "Please input text at least 8 characters or upload an image to extract text!");
@@ -95,27 +108,37 @@ if (form_openai_fa) {
     btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
     btn_submit.disabled = true;
 
-    const response = await window.axios.openAI(sentence, tools_type);
-    let result = response.choices[0].text;
-    document.querySelector("#div-results textarea").innerHTML = result.replace(/\n/g, "");
+    const response = await window.axios.openAI(sentence, tools_type, selectedLanguage);
+    const result = response.choices[0].text;
+    document.querySelector("#div-result textarea").innerHTML = result.replace(/\n/g, "");
 
     const token = sessionStorage.getItem('token');
-    // console.log(token)
     const db_response = await window.axios.backendLaravelPost('post', '', {
       text: sentence,
       result: result,
       tools_type: tools_type
     }, token);
-
     console.log(db_response);
 
     btn_submit.innerHTML = 'Process Text';
     btn_submit.disabled = false;
 
+    console.log(selectedLanguage);
+
     const authToken = token;
     console.log(authToken);
     sessionStorage.setItem('token', authToken);
   };
+}
+
+
+
+//Factual Answering Button
+const fa_btn = document.getElementById("btn-text");
+if (fa_btn) {
+  fa_btn.onclick = async function () {
+    console.log(fa_btn.value);
+  }
 }
 
 // Alert Message

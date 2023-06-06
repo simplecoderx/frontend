@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 
 // Global Variables
-const isDev = true;
+const isDev = false;
 const isMac = process.platform === 'darwin';
 const template = [
   // { role: 'appMenu' }
@@ -150,9 +150,9 @@ app.on("window-all-closed", () => {
 
 // Main Functions
 // Axios OpenAI API
-async function openAI(event, sentence, tools_type){
+async function openAI(event, sentence, tools_type, selectedLanguage){
   let result = null;
-
+  console.log(selectedLanguage);
   const env = dotenv.parsed;
   await axios({
       method: 'post',

@@ -1,4 +1,69 @@
-// Btn Back for Factual Answering
+// Main Window - Factual Answering Tool#2 Btn
+const btn_fa = document.getElementById('btn_fa');
+if (btn_fa) {
+    btn_fa.onclick = async function () {
+    const div_login = document.getElementById("div_login");
+    const div_prompts = document.getElementById("div_prompts_fa");
+    const div_tools = document.getElementById("div_tools");
+    const div_tool_no1 = document.getElementById("div_tool_no1");
+    const div_tools_no2 = document.getElementById("div_tools_no2");
+    const div_fa = document.getElementById("div_fa");
+    const div_engla = document.getElementById("div_engla");
+    div_tool_no1.classList.add('d-none');
+    div_tools_no2.classList.add('d-none');
+    div_engla.classList.add('d-none');
+    div_login.classList.add('d-none');
+    div_tools.classList.add('d-none');
+    div_fa.classList.remove('d-none');
+    div_fa.classList.add('d-flex');
+    div_prompts.classList.remove('d-none');
+    div_prompts.classList.add('d-flex');
+    }
+}
+
+// Form Submit for Factual Answering
+const form_openai_fa = document.getElementById("form_openai_fa");
+if (form_openai_fa) {
+  form_openai_fa.onsubmit = async function (e) {
+    e.preventDefault();
+
+    const btn_submit = document.querySelector("#form_openai_fa button[type='submit']");
+    const formData = new FormData(form_openai_fa);
+    let tools_type = formData.get("tools-type");
+    let sentence = formData.get("sentence-text");
+
+    if (sentence.length <= 8) {
+      alertMessage("error", "Please input text at least 8 characters or upload an image to extract text!");
+      return;
+    }
+
+    btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
+    btn_submit.disabled = true;
+
+    const response = await window.axios.openAI(sentence, tools_type);
+    let result = response.choices[0].text;
+    document.querySelector("#div-results textarea").innerHTML = result.replace(/\n/g, "");
+
+    const token = sessionStorage.getItem('token');
+    // console.log(token)
+    const db_response = await window.axios.backendLaravelPost('post', '', {
+      text: sentence,
+      result: result,
+      tools_type: tools_type
+    }, token);
+
+    console.log(db_response);
+
+    btn_submit.innerHTML = 'Process Text';
+    btn_submit.disabled = false;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
+  };
+}
+
+// First Btn Back in Factual Answering
 const btn_back_fa = document.getElementById('btn_back_fa');
 if (btn_back_fa) {
     btn_back_fa.onclick = async function () {
@@ -36,7 +101,7 @@ if (btn_logs_fa) {
     }
 }
 
-// Btn Back Tools for Factual Answering
+// Factual Answering Logs Back Btn - Second Btn
 const btn_back_tools_fa = document.getElementById('btn_back_tools_fa');
 if (btn_back_tools_fa) {
     btn_back_tools_fa.onclick = async function () {
@@ -52,6 +117,7 @@ if (btn_back_tools_fa) {
     }
 }
 
+// Btn Delete in Factual Answering Table Prompts
 const tbl_prompts_fa = document.getElementById('tbl_prompts_fa');
 if (tbl_prompts_fa) {
     tbl_prompts_fa.onclick = async function (e) {
@@ -67,7 +133,7 @@ if (tbl_prompts_fa) {
     };
 }
 
-// Btn Logout for Factual Answering
+// First Logout Btn for Factual Answering
 const btn_logout_fa = document.getElementById('btn_logout_fa');
 if (btn_logout_fa) {
     btn_logout_fa.onclick = async function () {
@@ -105,7 +171,7 @@ if (btn_logout_fa) {
     }
 }
 
-// Btn Logout for Factual Answering
+// Factual Answering Table Prompts Logout Btn- Second Logout Btn
 const btn_logout_fa2 = document.getElementById('btn_logout_fa2');
 if (btn_logout_fa2) {
     btn_logout_fa2.onclick = async function () {

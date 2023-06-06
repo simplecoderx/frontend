@@ -1,10 +1,16 @@
 
 .theme-bg-surface{
-    background-color: #F6F1F1 !important;
+    /* background-color: #ffd905de !important; */
+    background-image: url(../images/9lZ7.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .theme-bg-primary{
-    background-color: #FFFFFF !important;
+    background-color: transparent !important;
+        /* background-image: url(../images/9lZ7.gif);
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 .theme-bg-secondary{
@@ -25,34 +31,34 @@
 .sample{
     background-color: gray;
 }
-/* #pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-  }
+#div_login{
+  background-color: #F6F1F1;
+  height: 550px !important;
+  width: 400px;
+}
+.login-txt-openai{
+  font-size: xx-small;
+  margin-top: -4rem;
+  text-decoration: none;
+  color: black;
+  margin-right:2.5px;
+}
+.login-logo-openai{
+  height: 10px;
+  width: auto;
+  margin-top: -4rem;
+}
+/* .card{
+  background-color: black;
+} */
+.card-body{
+  background-color: #F6F1F1;
+}
 
-  .pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
+  #tesseract-icon svg{
+    /* color: orange; */
+    fill: red;
   }
-
-  .pagination .page-item {
-    margin-right: 0.5rem;
-  }
-
-  .pagination .page-item.disabled .page-link {
-    display: none;
-  }
-
-  .pagination .page-item.disabled + li.page-item:not(.active) {
-    margin-left: -0.5rem;
-  }
-
-  .pagination .page-item.active .page-link {
-    background-color: #007bff;
-    color: #fff;
-  } */
   .fa-btn{
     background-color: violet;
     border: none;
@@ -63,7 +69,7 @@
     border: none;
     color: black;
   }
-  .btn-engla{
+  /* .btn-engla{
     background-color: rgb(140, 59, 231);
     border: none;
     color: white;
@@ -72,7 +78,7 @@
     background-color: rgb(140, 59, 231);
     border: none;
     color: black;
-  }
+  } */
   .tool1_txt{
     font-size: 2rem;
   }
@@ -80,7 +86,7 @@
     background-color: rgb(140, 59, 231);
   }
   .div-fa{
-    background-color: violet;
+    background-color: rgb(238, 130, 238);
   }
   .process-btn{
     color: white;
@@ -102,3 +108,27 @@
     border: transparent;
     color: black;
   }
+
+  /* #previewImage {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+  } */
+  
+  #previewImage[src=""] {
+    display: none;
+  }
+  .dropdown-container {
+    border: 1px solid #ccc;
+    margin-top: -1rem;
+  }
+  
+  .dropdown-toggle {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .dropdown-menu {
+    text-decoration: none;
+  }
+  

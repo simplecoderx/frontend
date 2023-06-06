@@ -1,72 +1,6 @@
-// Form Login
-const form_login = document.getElementById("form_login");
-if (form_login) {
-    form_login.onsubmit = async function (e) {
-    e.preventDefault();
 
-    const btn_submit = document.querySelector("#form_login button[type='submit']");
-    const formData = new FormData(form_login);
 
-    btn_submit.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
-    btn_submit.disabled = true;
-
-    const response = await window.axios.backendLaravel('post', 'login', {
-            email: formData.get("email"),
-            password: formData.get("password"),
-        } );
-
-    // If email and password validation fails 
-    if ( response.user == null ) {
-        const field_email = document.querySelector("#form_login input[name='email']");
-        const field_password = document.querySelector("#form_login input[name='password']");
-        const invalid_email = document.getElementById("invalid_email");
-        const invalid_password = document.getElementById("invalid_password");
-
-        if ( response.errors.email == undefined ) {
-            invalid_email.innerHTML = '';
-            field_email.classList.remove('is-invalid');
-        }
-        else {
-            invalid_email.innerHTML = response.errors.email;
-            field_email.classList.add('is-invalid');
-        }
-        
-        if ( response.errors.password == undefined ) {
-            invalid_password.innerHTML = '';
-            field_password.classList.remove('is-invalid');
-        }
-        else {
-            invalid_password.innerHTML = response.errors.password;
-            field_password.classList.add('is-invalid');
-        }
-
-        btn_submit.innerHTML = 'Login';
-        btn_submit.disabled = false;
-        return;
-    }
-
-    // Store Token for Backend Laravel API access
-    sessionStorage.setItem('token', response.token);
-    alertMessage("success", "Successfully logged in account!");
-
-    // Hide Login Form and Show Tools
-    const div_login = document.getElementById("div_login");
-    const div_prompts = document.getElementById("div_prompts");
-    const div_tools = document.getElementById("div_tools");
-    div_login.classList.add('d-none');
-    div_prompts.classList.add('d-none');
-    div_tools.classList.remove('d-none');
-    div_tools.classList.add('d-flex');
-
-    btn_submit.innerHTML = 'Login';
-    btn_submit.disabled = false;
-
-    // Load Table
-    getPrompts();
-  };
-}
-
-// Btn Logs
+//Btn Logs
 const btn_logs = document.getElementById('btn_logs');
 if (btn_logs) {
     btn_logs.onclick = async function () {
@@ -119,29 +53,19 @@ if (btn_engla) {
     }
 }
 
-// Btn Factual Answering
-const btn_fa = document.getElementById('btn_fa');
-if (btn_fa) {
-    btn_fa.onclick = async function () {
-    const div_login = document.getElementById("div_login");
-    const div_prompts = document.getElementById("div_prompts_fa");
-    // const div_tbl = document.getElementById("div_tbl");
-    const div_tools = document.getElementById("div_tools");
-    const div_tool_no1 = document.getElementById("div_tool_no1");
-    const div_tools_no2 = document.getElementById("div_tools_no2");
-    const div_fa = document.getElementById("div_fa");
-    const div_engla = document.getElementById("div_engla");
-    div_tool_no1.classList.add('d-none');
-    div_tools_no2.classList.add('d-none');
-    div_engla.classList.add('d-none');
-    div_login.classList.add('d-none');
-    div_tools.classList.add('d-none');
-    div_fa.classList.remove('d-none');
-    div_fa.classList.add('d-flex');
-    div_prompts.classList.remove('d-none');
-    div_prompts.classList.add('d-flex');
-    }
-}
+//Language Seelctor
+const dropdownToggle = document.getElementById("Dropdown");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
+
+dropdownItems.forEach(item => {
+  item.addEventListener("click", () => {
+    dropdownToggle.innerText = item.innerText;
+    // Get the selected value
+    const selectedValue = item.getAttribute("value");
+    console.log(selectedValue);
+  });
+});
+
 
 // Btn Back
 const btn_back = document.getElementById('btn_back');
@@ -157,7 +81,6 @@ if (btn_back) {
     div_engla.classList.add('d-flex');
     div_prompts.classList.remove('d-none');
     div_prompts.classList.add('d-flex');
-    getPrompts();
     }
 }
 
@@ -175,7 +98,6 @@ if (btn_back_all) {
     div_prompts.classList.add('d-none');
     div_tools.classList.remove('d-none');
     div_tools.classList.add('d-flex');
-    // getPrompts();
     }
 }
 
@@ -328,16 +250,19 @@ if (btn_logout_index) {
 // Read Prompts from Laravel Filtered by Tools Type: English to Another Language
 async function getPrompts () {
     // Fetch API Response
-    const response = await window.axios.backendLaravel('get', 'prompts');
-
+    const token = sessionStorage.getItem('token');
+    const response = await window.axios.backendLaravel('get', 'prompts', null, token);
+    console.log(token);
     // Load table from API Response
     let htmlResult = '';
+    let index = 1;
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
         
         if (response[key].tools_type === 'English to Another Language') {
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            //'<th scope="row">' +  response[key].prompt_id + '</th>' +
+            '<th scope="row">' +  index + '</th>' +
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
@@ -349,26 +274,34 @@ async function getPrompts () {
                     '</button>' +
                 '</div>' +
         '</tr>';
+        index++;
         }
     });
 
     const tbody = document.getElementById('tbl_prompts');
     tbody.innerHTML = htmlResult;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
 }
 
 
 // Read All Prompts from Laravel
 async function getPromptsAll () {
     // Fetch API Response
-    const response = await window.axios.backendLaravel('get', 'prompts');
-
+    const token = sessionStorage.getItem('token');
+    const response = await window.axios.backendLaravel('get', 'prompts', null, token);
+    console.log(token);
+    // console.log(response);
     // Load table from API Response
     let htmlResult = '';
+    let index = 1;
     Object.keys(response).forEach(key => {
         let date = new Date(response[key].created_at.replace(' ', 'T'));
         
         htmlResult += '<tr>' +
-            '<th scope="row">' +  response[key].prompt_id + '</th>' +
+            '<th scope="row">' +  index + '</th>' +
             '<td>' + response[key].tools_type + '</td>' +
             '<td>' + response[key].text + '</td>' +
             '<td>' + response[key].result + '</td>' +
@@ -380,38 +313,52 @@ async function getPromptsAll () {
                     '</button>' +
                 '</div>' +
         '</tr>';
+        index++;
     });
 
     const tbody = document.getElementById('tbl_prompts_all');
-    // tbody.innerHTML = htmlResult;
+    tbody.innerHTML = htmlResult;
+
+    const authToken = token;
+    console.log(authToken);
+    sessionStorage.setItem('token', authToken);
 }
   
 
-// Set Btn Delete Prompt Click functionality from Table Prompts
+// Set Btn Delete Prompt Click functionality from English to Another Language Table Prompts
 const tbl_prompts = document.getElementById('tbl_prompts');
 if (tbl_prompts) {
-    tbl_prompts.onclick = async function (e) {
-        if(e.target && e.target.id == "btn_prompts_del") {
-            const id = e.target.name;
-            const response = await window.axios.backendLaravelDelete('delete', id);
-            console.log(response);
-            
-            alertMessage("success", "Successfully deleted id " + id + '!');
-            getPrompts();
-        }
-    };
+  tbl_prompts.onclick = async function (e) {
+    if (e.target && e.target.id == "btn_prompts_del") {
+      const id = e.target.name;
+      const token = sessionStorage.getItem('token');
+      console.log("Delete button clicked "+token);
+
+      const response = await window.axios.backendLaravelDelete('delete', id, null, token);
+      console.log("after function calling "+token);
+      console.log(response);
+
+      alertMessage("success", "Successfully deleted id " + id + '!');
+      getPrompts();
+    }
+  };
 }
+
 
 const tbl_prompts_all = document.getElementById('tbl_prompts_all');
 if (tbl_prompts_all) {
     tbl_prompts_all.onclick = async function (e) {
         if(e.target && e.target.id == "btn_prompts_del") {
             const id = e.target.name;
-            const response = await window.axios.backendLaravelDelete('delete', id);
+            const token = sessionStorage.getItem('token');
+            console.log("Delete button clicked "+token);
+      
+            const response = await window.axios.backendLaravelDelete('delete', id, null, token);
+            console.log("after function calling "+token);
             console.log(response);
-            
+      
             alertMessage("success", "Successfully deleted id " + id + '!');
-            getPrompts();
+            getPromptsAll();
         }
     };
 }
