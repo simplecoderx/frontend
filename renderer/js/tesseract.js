@@ -22,25 +22,6 @@ if (btn_tesseract) {
     }
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const formFileInput = document.getElementById("formFile");
-//     const clearBtn = document.getElementById("clearBtn");
-//     const frame = document.getElementById("frame");
-
-//     formFileInput.addEventListener("change", preview);
-//     clearBtn.addEventListener("click", clearImage);
-
-//     function preview() {
-//         frame.src = URL.createObjectURL(event.target.files[0]);
-//     }
-
-//     function clearImage() {
-//         formFileInput.value = null;
-//         frame.src = "";
-//     }
-// });
-
-
 // Extract Text from Image
 const btn_extract_tess = document.getElementById("btn_extract_tess");
 if (btn_extract_tess) {
@@ -173,3 +154,41 @@ if (btn_back_tesseract) {
     }
 }
 
+
+// First Logout Btn for Factual Answering
+const btn_logout_tesseract = document.getElementById('btn_logout_tesseract');
+if (btn_logout_tesseract) {
+  btn_logout_tesseract.onclick = async function () {
+    btn_logout_tesseract.innerHTML = '<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...';
+    btn_logout_tesseract.disabled = true;
+
+        // Use Token to Logout
+        const token = sessionStorage.getItem('token');
+        const response = await window.axios.backendLaravel('post', 'logout', null, token);
+        console.log(response);
+
+        // Hide Login Form and Show Prompts Table
+        const div_login = document.getElementById("div_login");
+        const div_tesseract = document.getElementById("div_tesseract");
+        div_tesseract.classList.add('d-none');
+        div_login.classList.remove('d-none');
+        div_login.classList.add('d-flex');
+
+        // Clear Login Form Fields
+        const field_email = document.querySelector("#form_login input[name='email']");
+        const field_password = document.querySelector("#form_login input[name='password']");
+        const invalid_email = document.getElementById("invalid_email");
+        const invalid_password = document.getElementById("invalid_password");
+        invalid_email.innerHTML = '';
+        field_email.value = '';
+        field_email.classList.remove('is-invalid');
+        invalid_password.innerHTML = '';
+        field_password.value = '';
+        field_password.classList.remove('is-invalid');
+
+        alertMessage("success", "Successfully logged out account!");
+        
+        btn_logout_tesseract.innerHTML = 'Logout';
+        btn_logout_tesseract.disabled = false;
+    }
+}

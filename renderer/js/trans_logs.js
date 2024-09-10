@@ -30,6 +30,29 @@ if (btn_all_logs) {
 }
 
 // Btn English to Another Language
+// const btn_engla = document.getElementById('btn_engla');
+// if (btn_engla) {
+//     btn_engla.onclick = async function () {
+//     const div_login = document.getElementById("div_login");
+//     const div_prompts = document.getElementById("div_prompts");
+//     // const div_tbl = document.getElementById("div_tbl");
+//     //const div_tools = document.getElementById("div_tools");
+//     const div_tool_no1 = document.getElementById("div_tool_no1");
+//     const div_tool_no2 = document.getElementById("div_tool_no2");
+//     const div_fa = document.getElementById("div_fa");
+//     const div_engla = document.getElementById("div_engla");
+//     div_fa.classList.add('d-none');
+//     div_tool_no1.classList.add('d-none');
+//     div_tool_no2.classList.add('d-none');
+//     div_login.classList.add('d-none');
+//     //div_tools.classList.add('d-none');
+//     div_engla.classList.remove('d-none');
+//     div_engla.classList.add('d-flex');
+//     div_prompts.classList.remove('d-none');
+//     div_prompts.classList.add('d-flex');
+//     }
+// }
+
 const btn_engla = document.getElementById('btn_engla');
 if (btn_engla) {
     btn_engla.onclick = async function () {
@@ -38,12 +61,10 @@ if (btn_engla) {
     // const div_tbl = document.getElementById("div_tbl");
     const div_tools = document.getElementById("div_tools");
     const div_tool_no1 = document.getElementById("div_tool_no1");
-    const div_tool_no2 = document.getElementById("div_tool_no2");
-    const div_fa = document.getElementById("div_fa");
+    // const div_tool_no2 = document.getElementById("div_tool_no2");
     const div_engla = document.getElementById("div_engla");
-    div_fa.classList.add('d-none');
     div_tool_no1.classList.add('d-none');
-    div_tool_no2.classList.add('d-none');
+    // div_tool_no2.classList.add('d-none');
     div_login.classList.add('d-none');
     div_tools.classList.add('d-none');
     div_engla.classList.remove('d-none');
@@ -62,7 +83,7 @@ dropdownItems.forEach(item => {
     dropdownToggle.innerText = item.innerText;
     // Get the selected value
     const selectedValue = item.getAttribute("value");
-    console.log(selectedValue);
+    console.log("this is from translog:" + selectedValue);
   });
 });
 
@@ -332,10 +353,10 @@ if (tbl_prompts) {
     if (e.target && e.target.id == "btn_prompts_del") {
       const id = e.target.name;
       const token = sessionStorage.getItem('token');
-      console.log("Delete button clicked "+token);
+      console.log("Delete button clicked " + token);
 
       const response = await window.axios.backendLaravelDelete('delete', id, null, token);
-      console.log("after function calling "+token);
+      console.log("after function calling " + token);
       console.log(response);
 
       alertMessage("success", "Successfully deleted id " + id + '!');

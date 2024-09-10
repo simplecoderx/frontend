@@ -1,4 +1,4 @@
-// Extract Text from Image
+// Extract Text from Image: Tesseract
 const btn_extract = document.getElementById("btn_extract");
 if (btn_extract) {
   btn_extract.onclick = async function () {
@@ -94,14 +94,30 @@ if (form_openai) {
 
     const btn_submit = document.querySelector("#form_openai button[type='submit']");
     const tools_type = document.querySelector("#form_openai [name='tools-type']").value;
-    const extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
-    const sentence = extraction_type
-      ? document.querySelector("#form_openai [name='sentence-text']").value
-      : document.querySelector("#form_openai [name='sentence-img']").value;
+    //const extraction_type = document.getElementById("pills-text-tab").classList.contains('active');
+    const sentence = document.querySelector("#form_openai [name='sentence-text']").value;
+      // ? document.querySelector("#form_openai [name='sentence-text']").value
+      // : document.querySelector("#form_openai [name='sentence-img']").value;
     const selectedLanguage = document.querySelector("#Dropdown").innerText.trim();
+    const refreshButton = document.querySelector("#refresh-btn");
+    const resultTextarea = document.querySelector("#result-textarea");
+    const sentenceTextarea = document.querySelector("#form_openai [name='sentence-text']");
+    //console.log("this is in the index selectedLanguage after initialization: " + selectedLanguage);
 
+      // Event listener for refresh button click
+    refreshButton.onclick= async function() {
+      sentenceTextarea.value = ""; // Clear the input textarea
+      resultTextarea.value = ""; // Clear the result textarea
+      selectedLanguage.innerText = "English" + " " + '<i class="fa fa-caret-down"></i>'; // Set the default language
+      console.log("Text areas and selected language refreshed");
+    };
+
+    if (sentence.length == 0) {
+      alertMessage("error", "The input is empty!");
+      return;
+    }
     if (sentence.length <= 8) {
-      alertMessage("error", "Please input text at least 8 characters or upload an image to extract text!");
+      alertMessage("error", "Too short. Please input text at least 5!");
       return;
     }
 
@@ -111,6 +127,7 @@ if (form_openai) {
     const response = await window.axios.openAI(sentence, tools_type, selectedLanguage);
     const result = response.choices[0].text;
     document.querySelector("#div-result textarea").innerHTML = result.replace(/\n/g, "");
+    console.log("this is in the index selectedLanguage after translation: " + selectedLanguage);
 
     const token = sessionStorage.getItem('token');
     const db_response = await window.axios.backendLaravelPost('post', '', {
@@ -123,7 +140,7 @@ if (form_openai) {
     btn_submit.innerHTML = 'Process Text';
     btn_submit.disabled = false;
 
-    console.log(selectedLanguage);
+    console.log("last part: " + selectedLanguage);
 
     const authToken = token;
     console.log(authToken);

@@ -152,14 +152,14 @@ app.on("window-all-closed", () => {
 // Axios OpenAI API
 async function openAI(event, sentence, tools_type, selectedLanguage){
   let result = null;
-  console.log(selectedLanguage);
+  // console.log("this is from the main: " + selectedLanguage);
   const env = dotenv.parsed;
   await axios({
       method: 'post',
       url: 'https://api.openai.com/v1/completions',
       data: {
         model: "text-davinci-003",
-        prompt: ( tools_type == 'English to Another Language' ? "Translate this into: " : "Factual Answering\n\n" ) +  sentence,
+        prompt: ( tools_type == 'English to Another Language' ? "Translate this into: " + selectedLanguage : "Factual Answering\n\n" ) +  sentence,
         temperature: ( tools_type == 'English to Another Language' ? 0.3 : 0 ),
         max_tokens: ( tools_type == 'English to Another Language' ? 100 : 1000 ),
         top_p: 1.0,

@@ -32,8 +32,11 @@ if (form_openai_fa) {
     let tools_type = formData.get("tools-type");
     let sentence = formData.get("sentence-text");
 
+    if(sentence == 0){
+        alertMessage("error", "The input is empty!")
+    }
     if (sentence.length <= 8) {
-      alertMessage("error", "Please input text at least 8 characters or upload an image to extract text!");
+      alertMessage("error", "Too short. Please input text at least 5!");
       return;
     }
 

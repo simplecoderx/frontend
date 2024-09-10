@@ -1,4 +1,3 @@
-
 .theme-bg-surface{
     /* background-color: #ffd905de !important; */
     background-image: url(../images/9lZ7.gif);
@@ -8,7 +7,7 @@
 
 .theme-bg-primary{
     background-color: transparent !important;
-        /* background-image: url(../images/9lZ7.gif);
+    /* background-image: url(../images/9lZ7.gif);
     background-repeat: no-repeat;
     background-size: cover; */
 }
@@ -28,13 +27,11 @@
 .form-textarea{
     height: 125px !important;
 }
-.sample{
-    background-color: gray;
-}
 #div_login{
   background-color: #F6F1F1;
   height: 550px !important;
   width: 400px;
+  margin: 0 auto;
 }
 .login-txt-openai{
   font-size: xx-small;
@@ -48,87 +45,84 @@
   width: auto;
   margin-top: -4rem;
 }
-/* .card{
-  background-color: black;
-} */
 .card-body{
   background-color: #F6F1F1;
 }
-
-  #tesseract-icon svg{
-    /* color: orange; */
-    fill: red;
-  }
-  .fa-btn{
-    background-color: violet;
-    border: none;
-    color: white;
-  }
-  .fa-btn:hover{
-    background-color: violet;
-    border: none;
-    color: black;
-  }
-  /* .btn-engla{
-    background-color: rgb(140, 59, 231);
-    border: none;
-    color: white;
-  }
-  .btn-engla:hover{
-    background-color: rgb(140, 59, 231);
-    border: none;
-    color: black;
-  } */
-  .tool1_txt{
-    font-size: 2rem;
-  }
-  .div-engla{
-    background-color: rgb(140, 59, 231);
-  }
-  .div-fa{
-    background-color: rgb(238, 130, 238);
-  }
-  .process-btn{
-    color: white;
-    background-color: rgb(47, 195, 221);
-    border: transparent;
-  }
-  .process-btn:hover{
-    color: black;
-    background-color: rgb(47, 195, 221);
-    border: transparent;
-  }
-  .process-btn-fa{
-    background-color:rgb(197, 62, 209);
-    border: transparent;
-    color: white;
-  }
-  .process-btn-fa:hover{
-    background-color:rgb(197, 62, 209);
-    border: transparent;
-    color: black;
-  }
-
-  /* #previewImage {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-  } */
-  
-  #previewImage[src=""] {
-    display: none;
-  }
-  .dropdown-container {
-    border: 1px solid #ccc;
-    margin-top: -1rem;
-  }
-  
-  .dropdown-toggle {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .dropdown-menu {
-    text-decoration: none;
-  }
-  
+#tesseract-icon svg{
+  fill: red;
+}
+.fa-btn{
+  background-color: violet;
+  border: none;
+  color: white;
+}
+.fa-btn:hover{
+  background-color: violet;
+  border: none;
+  color: black;
+}
+.div-engla{
+  background-color: rgb(140, 59, 231);
+}
+.div-tesseract{
+  background-color: rgb(62, 139, 175);
+}
+.div-fa{
+  background-color: rgb(238, 130, 238);
+}
+.process-btn{
+  color: white;
+  background-color:#007bff;
+  border: transparent;
+}
+.process-btn:hover{
+  color: white;
+  background-color: #007bff;
+  border: transparent;
+}
+.process-btn-fa{
+  background-color:rgb(197, 62, 209);
+  border: transparent;
+  color: white;
+}
+.process-btn-fa:hover{
+  background-color:rgb(197, 62, 209);
+  border: transparent;
+  color: black;
+}
+.refresh-btn{
+  color: white;
+  background-color: rgb(27, 211, 27);
+  border: transparent;
+  width: 1px;
+}
+.refresh-btn:hover{
+  color: black;
+  background-color: green;
+  border: transparent;
+}
+#previewImage[src=""] {
+  display: none;
+}
+#Dropdown {
+  font-size: 14px; 
+  padding: 0.25rem 0.5rem; 
+  background-color: white;
+  width: 20rem;
+}
+.dropdown-container {
+  margin-top: -2rem;
+}
+.dropdown-toggle {
+  text-decoration: none;
+  color: black;
+}
+.dropdown-menu {
+  text-decoration: none;
+}
+.title{
+  font-size: 2rem;
+}
+.larger-textarea{
+  height: 17.5rem !important;
+}
